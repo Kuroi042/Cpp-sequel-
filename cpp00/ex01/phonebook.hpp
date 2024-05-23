@@ -9,7 +9,7 @@ private:
    Contact contacts[8];
     std::string Name;
     std::string Nickname;
-    int Numberphone;
+    std::string Numberphone;
 
 public:
     Phonebook(void)
@@ -26,7 +26,7 @@ public:
         Nickname = newNickname;
     }
 
-    void set_Number(int newNumberphone)
+    void set_Number( std::string newNumberphone)
     {
         Numberphone = newNumberphone;
     }
@@ -39,12 +39,13 @@ public:
     {
         return Nickname;
     }
-    int get_Number()
+       std::string  get_Number()
     {
        return Numberphone;
     }
     void Welcome();
     void Cmd_reader (std::string str);
+    void showcontact();
         ~Phonebook()
         {
             std::cout<<"Calling destructor\n";
