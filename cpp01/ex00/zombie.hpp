@@ -19,12 +19,19 @@ class Zombie{
 
         cout<<"zombie desstractor\n";
     }
-
-    Zombie* newZombie( std::string name );
+    void set_Name(std::string newName)
+        {
+            Name =  newName;
+        }
+    std::string get_Name()
+        {
+            return Name;
+        }
 
 
 };
-
+    Zombie* newZombie( std::string name );
+    void randomChump( std::string name );
 
 
 
