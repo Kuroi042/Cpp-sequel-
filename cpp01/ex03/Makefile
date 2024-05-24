@@ -1,7 +1,7 @@
-NAME = ex01
-SRC = HumanA.cpp   HumanB.cpp     Weapon.cpp Weapon.hpp main.cpp
+NAME = ex03
+SRC = HumanA.cpp   HumanB.cpp     Weapon.cpp  main.cpp
 CC = g++
-CPPFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = #-Wall -Wextra -Werror
 OBJ = ${SRC:.cpp=.o}
 all : $(NAME)
 $(NAME):$(OBJ)
