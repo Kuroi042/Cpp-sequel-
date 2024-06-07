@@ -2,38 +2,29 @@
 #define ZOMBIE_HPP
 #include <iostream>
 using namespace std;
+
 class Zombie{
 
-    private:
-    std::string Name;
+private:
+std::string Name;
+public:
 
-    public:
- 
-
-    void anounce(void);
-    Zombie()
-    {
-        cout<<"zombie constractor\n";
-    }
-    ~Zombie(){
-
-        cout<<"zombie desstractor\n";
-    }
-    void set_Name(std::string newName)
-        {
-            Name =  newName;
-        }
-    std::string get_Name()
-        {
-            return Name;
-        }
-
-
+Zombie(){
+    cout<<"constarctor for Zombie\n";
+}
+~Zombie(){
+    cout<<"destractor for Zombie\n";
+}
+void set_Name(std::string newName){
+    Name =  newName;
+}
+std::string get_Name()
+{
+    return Name;
+}
+void anounce();
 };
-    Zombie* newZombie( std::string name );
-    void randomChump( std::string name );
 
-
-
-
+Zombie* newZombie( std::string name );
+void randomChump( std::string name );
 #endif
