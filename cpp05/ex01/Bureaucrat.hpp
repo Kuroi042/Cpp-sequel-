@@ -4,7 +4,7 @@
 using namespace std;
 #include <exception>
 #include "Form.hpp"
- 
+class Form;
 class gradeTooHighException : public std::exception
 {
     public :
@@ -24,8 +24,6 @@ class gradeTooLowException : public std::exception
         }
 };
 
-
-
 class Bureaucrat
 {
 private:
@@ -39,6 +37,7 @@ public:
     ~Bureaucrat();
     int getGrade();
     const string getName();
+    void signForm(Form& fr);
 };
 
 #endif

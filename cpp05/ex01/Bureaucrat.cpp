@@ -29,16 +29,11 @@ int Bureaucrat::getGrade()
         {
                 return name;
         }
-
-int main()
+void Bureaucrat::signForm(Form& fr)
         {
-                try{
-                        Bureaucrat br("chaaraf", 5);
-                }
-                catch(const std::exception& e)
-                {
-                           std::cerr << "Caught exception: " << e.what() << std::endl;
-                }
-                
-
+                // if(fr.getIsSigned() == true)
+                fr.beSigned(*this)
+                        cout<<fr.getName() << "signed : "<<getName()<<::endl;
+        
         }
+ 

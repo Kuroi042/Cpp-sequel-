@@ -29,17 +29,18 @@ class Form
 private:
     const string _name;
     bool isSigned;
-    int grade_To_Sign;
-    int grade_2exec;
+    int grade2sign;
+    int grade2exec;
 
 public:
     Form();
-    Form(std::string name, int grade);
+    Form(std::string name, int grade2sign, int grade2exec);
     ~Form();
     const string getName();
     bool getIsSigned();
     int getGradesigned();
-     void beSigned(const Bureaucrat& br);
+    int getGrade2sign();
+     void beSigned( Bureaucrat& br);
 };
 
 #endif
