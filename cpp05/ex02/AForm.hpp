@@ -26,7 +26,7 @@ public:
 
 
 class Bureaucrat;
-class Form
+class AForm
 {
 private:
     const string _name;
@@ -35,14 +35,15 @@ private:
     int grade2exec;
 
 public:
-    Form();
-    Form(std::string name, int grade2sign, int grade2exec);
-    ~Form();
+    AForm();
+    AForm(std::string name, int grade2sign, int grade2exec);
+    ~AForm();
     const string getName();
     bool getIsSigned();
-    int getGradesigned();
     int getGrade2sign();
+    int getGrade2exec();
      void beSigned( Bureaucrat& br);
-};
+    virtual void execute(Bureaucrat const &executor) const = 0;
+    };
 
 #endif

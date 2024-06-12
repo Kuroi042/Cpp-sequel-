@@ -40,5 +40,6 @@ void Form::beSigned( Bureaucrat& br)
             }
             isSigned = false;
     }
+      
 
 

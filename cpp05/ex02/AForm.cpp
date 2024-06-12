@@ -1,44 +1,49 @@
 #include "AForm.hpp"
 
-Form::Form()
+AForm::AForm()
 {
-    cout << "default constarctor for form\n";
+    cout << "default constarctor for Aform\n";
     isSigned = false;
 }
-Form::~Form()
+AForm::~AForm()
 {
-    cout << "destractor for form\n";
+    cout << "destractor for Aform\n";
 }
 
-    Form::Form(std::string name, int grade, int gradeExec):_name(name),grade2sign(grade),grade2exec(gradeExec)
-        {
-            if(grade2sign <1 || grade2exec<1)
-                throw GradeTooHighException();
-            if(grade2sign>150 || grade2exec >150)
-                 throw GradeTooLowException();
+AForm::AForm(std::string name, int grade, int gradeExec) : _name(name), grade2sign(grade), grade2exec(gradeExec)
+{
+    if (grade2sign < 1 || grade2exec < 1)
+        throw GradeTooHighException();
+    if (grade2sign > 150 || grade2exec > 150)
+        throw GradeTooLowException();
 
-            cout<<"Bureaucrat== " <<name<< " grade == " <<grade2sign<<std::endl;
-        } 
-const string Form::getName()
+    cout << "Bureaucrat== " << name << " grade == " << grade2sign << std::endl;
+}
+const string AForm::getName()
 {
     return _name;
 }
-bool Form::getIsSigned()
+
+bool AForm::getIsSigned()
 {
     return isSigned;
 }
-    int Form::getGrade2sign()
-        {
-            return grade2sign;
-        }
 
-void Form::beSigned( Bureaucrat& br)
+int AForm::getGrade2sign()
+{
+    return grade2sign;
+}
+
+int AForm::getGrade2exec()
+{
+    return grade2exec;
+}
+
+void AForm::beSigned(Bureaucrat &br)
+{
+    if (br.getGrade() > grade2sign)
     {
-     if(br.getGrade() > grade2sign)
-            {
-        throw   GradeTooLowException();
-            }
-            isSigned = false;
+        throw GradeTooLowException();
     }
-
-
+    isSigned = false;
+}
