@@ -21,15 +21,15 @@ Bureaucrat::Bureaucrat(const std::string _name, int _grade) : name(_name)
         cout << "Param Constractor name == " << name << "grade == " << grade << std::endl;
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
         return grade;
 }
-    const string Bureaucrat::getName()
+    const string Bureaucrat::getName() const 
         {
                 return name;
         }
-void Bureaucrat::signForm(Form& fr)
+void Bureaucrat::signForm(AForm& fr)  
         {
                 try{
                 fr.beSigned(*this);

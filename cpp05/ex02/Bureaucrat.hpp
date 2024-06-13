@@ -35,9 +35,9 @@ public:
     Bureaucrat();
     Bureaucrat(const std::string _name, int _grade);
     ~Bureaucrat();
-    int getGrade();
-    const string getName();
-    void signForm(Form& fr);
+    int getGrade() const ;
+    const string getName() const;
+    void signForm(AForm& fr);
 };
 
 #endif

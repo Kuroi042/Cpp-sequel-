@@ -30,20 +30,20 @@ class AForm
 {
 private:
     const string _name;
-    bool isSigned;
+     bool isSigned;
     int grade2sign;
     int grade2exec;
 
 public:
     AForm();
     AForm(std::string name, int grade2sign, int grade2exec);
-    ~AForm();
+     ~AForm();
     const string getName();
-    bool getIsSigned();
-    int getGrade2sign();
-    int getGrade2exec();
+    bool getIsSigned() const;
+    int getGrade2sign()const ;
+    int getGrade2exec() const;
      void beSigned( Bureaucrat& br);
-    virtual void execute(Bureaucrat const &executor) const = 0;
+    virtual void execute(Bureaucrat const &executor) const = 0 ;
     };
 
 #endif

@@ -24,17 +24,17 @@ const string AForm::getName()
     return _name;
 }
 
-bool AForm::getIsSigned()
+ bool AForm::getIsSigned() const
 {
     return isSigned;
 }
 
-int AForm::getGrade2sign()
+int AForm::getGrade2sign() const
 {
     return grade2sign;
 }
 
-int AForm::getGrade2exec()
+int AForm::getGrade2exec() const 
 {
     return grade2exec;
 }
