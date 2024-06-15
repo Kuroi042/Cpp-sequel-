@@ -41,9 +41,14 @@ int AForm::getGrade2exec() const
 
 void AForm::beSigned(Bureaucrat &br)
 {
-    if (br.getGrade() > grade2sign)
+    if(br.getGrade()<grade2sign)
+        {
+                isSigned = true;
+        }
+    
+    else if (br.getGrade() > grade2sign)
     {
         throw GradeTooLowException();
     }
-    isSigned = false;
+
 }

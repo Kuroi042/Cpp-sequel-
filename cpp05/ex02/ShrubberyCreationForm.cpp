@@ -1,4 +1,9 @@
 #include "ShrubberyCreationForm.hpp"
+#include <stdio.h>
+#include <fstream>
+
+
+
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm("ShrubberyCreationForm", 145, 137), target(target) {
@@ -10,15 +15,31 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
     if(getIsSigned() ==  false)  // grade > gradetosign 130 > 5 for ex
         {   
-            throw GradeTooLowException();
+            throw SHGradeTooLowException();
         }
     if(executor.getGrade() <  getGrade2exec()) //  grade_exec == 5 grade = 1
         {
-            throw     GradeTooHighException();
+            throw     SHGradeTooHighException();
         }
 
     if(executor.getGrade() <=  getGrade2sign() && executor.getGrade() >getGrade2exec())
-        {
-                cout<<"print tree \n";
-        }
+  {   
+    printf("haha\n");
+      std::ofstream outfile((target + "_shrubbery").c_str());
+    if (outfile.is_open()) {
+        outfile << "       _-_\n";
+        outfile << "    /~~   ~~\\\n";
+        outfile << " /~~         ~~\\\n";
+        outfile << "{               }\n";
+        outfile << " \\  _-     -_  /\n";
+        outfile << "   ~  \\\\ //  ~\n";
+        outfile << "_- -   | | _- _\n";
+        outfile << "  _ -  | |   -_\n";
+        outfile << "      // \\\\\n";
+        outfile.close();
+    }
+  }
+     else {
+        std::cerr << "Error: Could not create file " << target + "_shrubbery" << std::endl;
+    }
 }

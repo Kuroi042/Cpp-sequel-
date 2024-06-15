@@ -10,7 +10,7 @@ class GradeTooHighException : public std::exception
 public:
     const char *what() const throw()
     {
-        return "Grade is too high! Must be between 1 and 150.";
+        return "Grade is too high! Must respect the range of the form.";
     }
 };
 class GradeTooLowException : public std::exception
@@ -19,7 +19,7 @@ class GradeTooLowException : public std::exception
 public:
     const char *what() const throw()
     {
-        return "Grade is too low! Must be between 1 and 150.";
+        return "Grade is too low! Must respect the range of the form";
     }
 };
 
