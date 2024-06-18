@@ -30,15 +30,14 @@ class AForm
 {
 private:
     const string _name;
-     bool isSigned;
+    bool isSigned;
     int const grade2sign;
     int const grade2exec;
-
 public:
     AForm();
-    AForm(const std::string name, int grade2sign, int grade2exec);
+    AForm(std::string const name, int grade2sign, int grade2exec);
      ~AForm();
-    const string getName() const ;
+    string const getName() const ;
     bool getIsSigned() const ;
     int getGrade2sign() const;
     int getGrade2exec() const;

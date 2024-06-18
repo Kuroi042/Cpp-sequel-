@@ -15,19 +15,12 @@ private:
 public:
 
     Bureaucrat();
-    Bureaucrat(const std::string _name, int _grade);
+    Bureaucrat( std::string const _name, int _grade);
     ~Bureaucrat();
     int getGrade() const ;
-    const string getName() const;
+    string const getName() const;
     void signForm(AForm&  fr) ;
-   void executeForm(AForm const &fr)  {
-    try {
-        fr.execute(*this);
-        std::cout << name << " executed " << fr.getName() << std::endl;
-    } catch (std::exception &e) {
-        std::cout << name << " couldn't execute " << fr.getName() << " because " << e.what() << std::endl;
-    }
-};
+   void executeForm(AForm const &fr);
 
 class gradeTooHighException : public std::exception
 {

@@ -6,7 +6,7 @@
 int main()
 { 
     try {
-        Bureaucrat bob("Bob", 1);
+        Bureaucrat bob("Bob", 140);
         ShrubberyCreationForm shrubberyForm("home");
 
         bob.signForm(shrubberyForm);

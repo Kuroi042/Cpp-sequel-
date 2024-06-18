@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat()
 {
@@ -40,4 +39,13 @@ void Bureaucrat::signForm(AForm&  fr)
         {
                 std::cout << name << " couldn't sign " << fr.getName() << " because " << e.what() << std::endl;
         }
+}
+void Bureaucrat::executeForm(AForm const &fr)
+{
+    try {
+        fr.execute(*this);
+        std::cout << name << " executed " << fr.getName() << std::endl;
+    } catch (std::exception &e) {
+        std::cout << name << " couldn't execute " << fr.getName() << " because " << e.what() << std::endl;
+    }
 }
