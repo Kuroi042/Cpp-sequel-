@@ -5,6 +5,7 @@
 #include <exception>
 using namespace std;
 #include "Bureaucrat.hpp"
+class Bureaucrat;
 class GradeTooHighException : public std::exception
 {
 public:
@@ -25,25 +26,25 @@ public:
 
 
 
-class Bureaucrat;
 class AForm
 {
 private:
     const string _name;
      bool isSigned;
-    int grade2sign;
-    int grade2exec;
+    int const grade2sign;
+    int const grade2exec;
 
 public:
     AForm();
-    AForm(std::string name, int grade2sign, int grade2exec);
+    AForm(const std::string name, int grade2sign, int grade2exec);
      ~AForm();
-    const string getName();
-    bool getIsSigned() const;
-    int getGrade2sign()const ;
+    const string getName() const ;
+    bool getIsSigned() const ;
+    int getGrade2sign() const;
     int getGrade2exec() const;
-     void beSigned( Bureaucrat& br);
+     void beSigned(  Bureaucrat const &br);
     virtual void execute(Bureaucrat const &executor) const = 0 ;
     };
+
 
 #endif

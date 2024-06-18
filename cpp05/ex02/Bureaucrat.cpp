@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat()
 {
@@ -25,18 +25,19 @@ int Bureaucrat::getGrade() const
 {
         return grade;
 }
-    const string Bureaucrat::getName() const 
+const string Bureaucrat::getName() const 
+{
+        return name;
+}
+void Bureaucrat::signForm(AForm&  fr) 
+{
+        try
         {
-                return name;
-        }
-void Bureaucrat::signForm(AForm& fr)  
-        {
-                try{
                 fr.beSigned(*this);
-    std::cout << name << " signed " << fr.getName() << std::endl;}
-                catch(std::exception &e){
-                    std::cout << name << " couldn't sign " << fr.getName() << " because " << e.what() << std::endl;
-      
-                  } 
- }
- 
+                std::cout << name << " signed " << fr.getName() << std::endl;
+        }
+        catch (const std::exception &e)
+        {
+                std::cout << name << " couldn't sign " << fr.getName() << " because " << e.what() << std::endl;
+        }
+}

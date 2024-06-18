@@ -1,9 +1,9 @@
 #include "AForm.hpp"
 
-AForm::AForm()
+AForm::AForm():_name("default"),grade2exec(150), grade2sign(1),isSigned(false)
 {
-    cout << "default constarctor for Aform\n";
-    isSigned = false;
+    // cout << "default constarctor for Aform\n";
+    // isSigned = false;
 }
 AForm::~AForm()
 {
@@ -19,7 +19,7 @@ AForm::AForm(std::string name, int grade, int gradeExec) : _name(name), grade2si
 
     cout << "Bureaucrat== " << name << " grade == " << grade2sign << std::endl;
 }
-const string AForm::getName()
+string const AForm::getName() const
 {
     return _name;
 }
@@ -34,12 +34,12 @@ int AForm::getGrade2sign() const
     return grade2sign;
 }
 
-int AForm::getGrade2exec() const 
+int AForm::getGrade2exec()  const
 {
     return grade2exec;
 }
 
-void AForm::beSigned(Bureaucrat &br)
+void AForm::beSigned(Bureaucrat const &br)
 {
     if(br.getGrade()<grade2sign)
         {

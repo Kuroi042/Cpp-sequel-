@@ -1,22 +1,21 @@
-#pragma once
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
-#include <iostream>
-#include <stdio.h>
-class Aform;
-class PrBGradeTooHighException: public std::exception
+#include "PresidentialPardonForm.hpp"
+
+PresidentialPardonForm::PresidentialPardonForm(std::string _target):AForm("PresidentialPardonForm",25,5), target(_target){
+
+        std::cout<<"target for PresidentialPardonForm is " <<this->target<<std::endl; 
+}
+
+void PresidentialPardonForm::execute(const Bureaucrat &executor)
     {
-        public:
-        const char *what() const throw()
-            {
-                return "error  hight ";
-            }
-    };
-class PrBGradeTooLowException: public std::exception
+        if(getIsSigned() == false){
+            throw(PrBGradeTooLowException());
+        }
+        if(executor.getGrade() < getGrade2exec()){
+        throw(PrBGradeTooHighException());
+        }
+        if(executor.getGrade() < getGrade2sign() && executor.getGrade() > getGrade2exec())
     {
-        public:
-        const char *what() const throw()
-            {
-                return "low";
-            }
-    };
+        std::cout<<target<<"has been pardoned by Zaphod Beeblebrox"<<std::endl;
+        
+    }
+    }

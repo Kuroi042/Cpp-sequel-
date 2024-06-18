@@ -28,7 +28,7 @@ private :
 std::string target;
 public :
 RobotomyRequestForm(std::string target);
-void execute(const Bureaucrat &execute)const ;
+void execute(const Bureaucrat &execute) ;
 virtual ~RobotomyRequestForm()
 {
 
