@@ -8,7 +8,7 @@ AForm* Intern::makeForm(std::string NameForm , std::string Target)
          std::string formtype[3] ={"PresidentialPardon","ShrubberyCreation","RobotomyRequest"};
          while(i <3)
             {
-                if(NameForm == formtype[i]  )
+                if( formtype[i] ==NameForm  )
                     {
                         std::cout<<"intern create "<<NameForm<<std::endl;
                         for(int j = 0;j<3;j++)
@@ -18,9 +18,12 @@ AForm* Intern::makeForm(std::string NameForm , std::string Target)
                             }
                             return form[i];
                     }
-                    else 
-                        delete form[i];
-            }
+                    i++;
+                  
+                }
+                          for(int i = 0; i < 3; i++){
+                delete form[i];
+                          }
         
             throw Intern::ErrorFormInputException();
 

@@ -7,7 +7,7 @@ AForm::AForm():_name("default"),isSigned(false),grade2sign(1), grade2exec(150)
 }
 AForm::~AForm()
 {
-    cout << "destractor for Aform\n";
+    cout << "destractor for Aform"<<std::endl;
 }
 
 AForm::AForm(std::string name, int grade, int gradeExec) : _name(name), grade2sign(grade), grade2exec(gradeExec)
@@ -17,7 +17,7 @@ AForm::AForm(std::string name, int grade, int gradeExec) : _name(name), grade2si
     if (grade2sign > 150 || grade2exec > 150)
         throw GradeTooLowException();
 
-    cout << "Bureaucrat== " << name << " grade == " << grade2sign << std::endl;
+    // cout << "Bureaucrat== " << name << " grade == " << grade2sign << std::endl;
 }
 string const AForm::getName() const
 {
