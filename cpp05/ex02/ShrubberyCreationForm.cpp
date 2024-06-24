@@ -13,11 +13,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor)  const
 {
-    if(getIsSigned() ==  false)  // grade > gradetosign 130 > 5 for ex
+    if(getIsSigned() ==  false)
         {   
             throw SHGradeTooLowException();
         }
-    if(executor.getGrade() <  getGrade2exec()) //  grade_exec == 5 grade = 1
+    if(executor.getGrade() <  getGrade2exec()) 
         {
             throw     SHGradeTooHighException();
         }
@@ -30,12 +30,13 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor)  const
         outfile << "       _-_\n";
         outfile << "    /~~   ~~\\\n";
         outfile << " /~~         ~~\\\n";
-        outfile << "{               }\n";
+        outfile << "{     chajara    }\n";
         outfile << " \\  _-     -_  /\n";
         outfile << "   ~  \\\\ //  ~\n";
         outfile << "_- -   | | _- _\n";
         outfile << "  _ -  | |   -_\n";
-        outfile << "      // \\\\\n";
+        outfile << "      //  \\ \\\\\n";
+        outfile << "     // Jesus\\   \\\\\n";
         outfile.close();
     }
   }

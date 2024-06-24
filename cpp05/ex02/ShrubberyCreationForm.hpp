@@ -10,7 +10,7 @@ class SHGradeTooHighException : public std::exception
 public:
     const char *what() const throw()
     {
-        return "Grade is too high! Must respect the range of the ShrubberyCreationForm ";
+        return "Grade is too high! Must respect the ShrubberyCreation Form ";
     }
 };
 class SHGradeTooLowException : public std::exception
@@ -19,7 +19,7 @@ class SHGradeTooLowException : public std::exception
 public:
     const char *what() const throw()
     {
-        return "Grade is too low! Must respect the range of the ShrubberyCreationForm";
+        return "Grade is too low! Must respect the ShrubberyCreation Form";
     }
 };
 class ShrubberyCreationForm : public AForm {
@@ -28,7 +28,9 @@ std::string const  target;
 public :
     ShrubberyCreationForm(const std::string &target);
     void execute( Bureaucrat const &executor)  const;
-    ~ShrubberyCreationForm(){};
+    ~ShrubberyCreationForm(){
+        std::cout<<"destractor for ShrubberyCreationForm\n";
+    };
 };
 
 #endif

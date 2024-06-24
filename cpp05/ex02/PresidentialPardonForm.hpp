@@ -9,7 +9,7 @@ class PrBGradeTooHighException: public std::exception
         public:
         const char *what() const throw()
             {
-                return "error  hight ";
+                return "error  hight grade  ";
             }
     };
 class PrBGradeTooLowException: public std::exception
@@ -17,7 +17,7 @@ class PrBGradeTooLowException: public std::exception
         public:
         const char *what() const throw()
             {
-                return "low";
+                return "error low grade ";
             }
     };
 
@@ -26,7 +26,12 @@ class PresidentialPardonForm : public AForm
         private :
         std::string target;
         public:
+        PresidentialPardonForm(){
+            std::cout<<"constractor for PresidentialPardonForm \n";
+        }
         PresidentialPardonForm(std::string _target);
-        ~PresidentialPardonForm(){};
+        ~PresidentialPardonForm(){
+            std::cout<<"destractor for PresidentialPardonForm\n";
+        };
         void execute (const Bureaucrat &br)const;
     };

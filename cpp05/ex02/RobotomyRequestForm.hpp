@@ -10,7 +10,7 @@ class RBGradeTooHighException : public std::exception
 public:
     const char *what() const throw()
     {
-        return "aiee robotomy failed !!! Grade is too high! Must respect the range of the RobotomynForm ";
+        return "aiee !! the Robotomy failed !!! Grade is too high! Must respect the range of the RobotomynForm ";
     }
 };
 class RBGradeTooLowException : public std::exception
@@ -19,7 +19,7 @@ class RBGradeTooLowException : public std::exception
 public:
     const char *what() const throw()
     {
-        return " aiee robotomy failed  !!! Grade is too low! Must respect the range of the RobotomynForm";
+        return " aiee !! the Robotomy failed. !!! Grade is too low! Must respect the range of the RobotomynForm";
     }
 };
 
@@ -31,6 +31,6 @@ RobotomyRequestForm(std::string target);
 void execute(const Bureaucrat &execute) const  ;
 ~RobotomyRequestForm()
 {
-
+std::cout<<"destractor for RobotomyRequestForm\n";
 };
 };

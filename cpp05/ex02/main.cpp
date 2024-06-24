@@ -16,15 +16,15 @@ int main()
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 
-//  try {
-//         Bureaucrat bob("Bob",60 );
-//         RobotomyRequestForm rb("home");
+ try {
+        Bureaucrat bob("Bob",60 );
+        RobotomyRequestForm rb("home");
 
-//         bob.signForm(rb);
-//         std::cout<<rb.getIsSigned()<<::std::endl;
-//         rb.execute(bob);
+        bob.signForm(rb);
+        std::cout<<rb.getIsSigned()<<::std::endl;
+        rb.execute(bob);
 
-//     } catch (const std::exception &e) {
-//         std::cerr << "Exception: " << e.what() << std::endl;
-//     }
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
     }
