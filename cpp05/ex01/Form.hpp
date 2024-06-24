@@ -42,4 +42,3 @@ public:
      void beSigned( Bureaucrat& br);
 };
 
-#endif
