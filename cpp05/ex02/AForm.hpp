@@ -36,13 +36,13 @@ private:
 public:
     AForm();
     AForm(std::string const name, int grade2sign, int grade2exec);
-     ~AForm();
+     virtual ~AForm();
     string const getName() const ;
     bool getIsSigned() const ;
     int getGrade2sign() const;
     int getGrade2exec() const;
      void beSigned(  Bureaucrat const &br);
-    virtual void execute(Bureaucrat const &executor) const = 0 ;
+    virtual void execute(const Bureaucrat  &executor) const = 0 ;
     };
 
 

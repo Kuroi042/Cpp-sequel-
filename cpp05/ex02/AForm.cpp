@@ -1,9 +1,9 @@
 #include "AForm.hpp"
 
-AForm::AForm():_name("default"),isSigned(false),grade2sign(1), grade2exec(150)
+AForm::AForm():_name("none"),isSigned(false),grade2sign(1), grade2exec(150)
 {
-    // cout << "default constarctor for Aform\n";
-    // isSigned = false;
+    cout << "default constarctor for Aform\n";
+    isSigned = false;
 }
 AForm::~AForm()
 {

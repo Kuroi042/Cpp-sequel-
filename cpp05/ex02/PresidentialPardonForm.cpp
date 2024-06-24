@@ -5,7 +5,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string _target):AForm("Presi
         std::cout<<"target for PresidentialPardonForm is " <<this->target<<std::endl; 
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat &executor)
+void PresidentialPardonForm::execute(const Bureaucrat &executor) const
     {
         if(getIsSigned() == false){
             throw(PrBGradeTooLowException());

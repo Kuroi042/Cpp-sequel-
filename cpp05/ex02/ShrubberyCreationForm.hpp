@@ -27,7 +27,7 @@ private :
 std::string const  target;
 public :
     ShrubberyCreationForm(const std::string &target);
-    void execute( Bureaucrat const &executor) const ;
+    void execute( Bureaucrat const &executor)  const;
     ~ShrubberyCreationForm(){};
 };
 

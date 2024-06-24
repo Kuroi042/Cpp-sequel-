@@ -7,7 +7,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target):AForm("RobotomyRequ
     }
 
 
-void RobotomyRequestForm::execute(const Bureaucrat &executor)
+void RobotomyRequestForm::execute(const Bureaucrat &executor) const
     {
         if(getIsSigned() == false){
             throw(RBGradeTooLowException());
