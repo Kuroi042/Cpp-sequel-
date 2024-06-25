@@ -1,6 +1,12 @@
 #include "Bureaucrat.hpp"
 
-
+const char* Bureaucrat::gradeTooHighException::what() const throw() {
+    return "Bureaucrat Grade is too high! Must be between 1 and 150.";
+}
+        const char* Bureaucrat::gradeTooLowException::what() const throw()
+        {
+                return "Bureaucrat Grade is too low! Must be between 1 and 150.";
+        }
 Bureaucrat::Bureaucrat()
 {
         cout << "default constractor for bureaucrate\n ";
@@ -11,7 +17,7 @@ Bureaucrat::~Bureaucrat()
         cout << "destractor for bureaucrate\n ";
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, int _grade) : name(_name)
+Bureaucrat::Bureaucrat(const std::string _name,const int _grade) : name(_name)
 {
         grade = _grade;
         if (grade < 1)
@@ -40,3 +46,11 @@ void Bureaucrat::signForm(Form& fr)
                   } 
  }
  
+std::ostream& operator<<(std::ostream& os,  Bureaucrat &br)
+
+        {       
+                std::cout<<" Bureacrate << overload \n";
+                os<<" << overload Bureacrate name = "<<br.getName()<<std::endl;
+                os<<" << Bureaucrate Grade = "<<br.getGrade()<<std::endl;
+                return (os);
+        }

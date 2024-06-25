@@ -44,6 +44,14 @@ void Form::beSigned( Bureaucrat& br)
             }
             isSigned = false;
     }
-      
+       std::ostream &operator<<(std::ostream &os , Form &Fr)
+        {
+            std::cout<<"form << overload\n";
+        os<<" << formName  = "<<Fr.getName() <<std::endl;
+        os<<" << GradToSign = "<<Fr.getGrade2sign() <<std::endl;
+        os<<" << Grad2Sign = "<<Fr.getGrade2exec() <<std::endl;
+
+                return os;
+        }
 
 

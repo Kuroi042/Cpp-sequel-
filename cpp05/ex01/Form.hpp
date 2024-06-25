@@ -39,8 +39,9 @@ public:
     bool getIsSigned();
      int getGrade2sign();
      int getGrade2exec();
-
      void beSigned( Bureaucrat& br);
-     
+
 };
+
+std::ostream& operator<<(std::ostream& os,  Form &fr);
 
