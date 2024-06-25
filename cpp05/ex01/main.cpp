@@ -4,8 +4,8 @@
 int main()
     {
         try{
-        Bureaucrat br("charaf",195 );
-        Form fr("Form1 ", 11, 5);
+        Bureaucrat br("charaf",12 );
+        Form fr("Form1 ", 0, 5);
         std::cout<<br<<std::endl;
            std::cout<<fr<<std::endl;
         br.signForm(fr);

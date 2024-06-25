@@ -4,23 +4,23 @@
 #include <exception>
 using namespace std;
 #include "Bureaucrat.hpp"
-class GradeTooHighException : public std::exception
-{
-public:
-    const char *what() const throw()
-    {
-        return "Grade is too high! Must be between 1 and 150.";
-    }
-};
-class GradeTooLowException : public std::exception
-{
+// // class GradeTooHighException : public std::exception
+// // {
+// // public:
+// //     const char *what() const throw()
+// //     {
+// //         return "Grade is too high! Must be between 1 and 150.";
+// //     }
+// // };
+// class GradeTooLowException : public std::exception
+// {
 
-public:
-    const char *what() const throw()
-    {
-        return "Grade is too low! Must be between 1 and 150.";
-    }
-};
+// public:
+//     const char *what() const throw()
+//     {
+//         return "Grade is too low! Must be between 1 and 150.";
+//     }
+// };
 
 class Bureaucrat;
 class Form
@@ -40,6 +40,19 @@ public:
      int getGrade2sign();
      int getGrade2exec();
      void beSigned( Bureaucrat& br);
+
+     class FormGradeTooHighException : public std::exception
+{
+public:
+    const char *what() const throw();
+};
+
+class FormGradeTooLowException : public std::exception
+{
+
+public:
+    const char *what() const throw();
+};
 
 };
 
