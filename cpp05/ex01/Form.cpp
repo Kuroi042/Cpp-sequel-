@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form()
+Form::Form():_name("none"),isSigned(false),grade2sign(150),grade2exec(1)
 {
     cout << "default constarctor for form\n";
     isSigned = false;
@@ -10,7 +10,7 @@ Form::~Form()
     cout << "destractor for form\n";
 }
 
-    Form::Form(std::string name, int grade, int gradeExec):_name(name),grade2sign(grade),grade2exec(gradeExec)
+    Form::Form(std::string name, const int grade, const int gradeExec):_name(name),grade2sign(grade),grade2exec(gradeExec)
         {
             if(grade2sign <1 || grade2exec<1)
                 throw GradeTooHighException();
@@ -30,6 +30,10 @@ bool Form::getIsSigned()
     int Form::getGrade2sign()
         {
             return grade2sign;
+        }
+    int Form::getGrade2exec()
+        {
+            return grade2exec;
         }
 
 void Form::beSigned( Bureaucrat& br)

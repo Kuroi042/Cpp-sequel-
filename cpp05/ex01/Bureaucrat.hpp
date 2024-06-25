@@ -38,6 +38,9 @@ public:
     int getGrade();
     const string getName();
     void signForm(Form& fr);
+    void BrIncrement();
+    void BrDecrement();
 };
+std::ostream& operator<<(std::ostream& os,  Bureaucrat &br);
 
 #endif
