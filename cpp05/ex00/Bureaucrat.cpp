@@ -18,27 +18,34 @@ Bureaucrat::Bureaucrat(const std::string _name, int _grade) : name(_name)
                 throw gradeTooHighException();
         if (grade > 150)
                 throw gradeTooLowException();
-        cout << "Param Constractor name == " << name << "grade == " << grade << std::endl;
+        cout << "Param Constractor name == " <<getName() << " ||  grade == " << getGrade()<< std::endl;
 }
 
 int Bureaucrat::getGrade()
 {
         return grade;
 }
-    const string Bureaucrat::getName()
+
+const string Bureaucrat::getName()
         {
                 return name;
         }
 
-int main()
-        {
-                try{
-                        Bureaucrat br("chaaraf", 5);
-                }
-                catch(const std::exception& e)
-                {
-                           std::cerr << "Caught exception: " << e.what() << std::endl;
-                }
-                
+std::ostream& operator<<(std::ostream& os,  Bureaucrat &br)
 
+        {
+                os<<"<< overload Bureacrate name = "<<br.getName()<< "Bureaucrate Grade = "<<br.getGrade()<<std::endl;
+                return (os);
+        }
+ void Bureaucrat::BrDecrement()
+        {
+                grade++;
+                if(getGrade()>150)
+                        throw gradeTooLowException();
+        }
+ void Bureaucrat::BrIncrement()
+        {
+                grade--;
+                if(getGrade()<1)
+                        throw gradeTooHighException();
         }

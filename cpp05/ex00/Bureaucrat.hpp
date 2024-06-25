@@ -38,6 +38,9 @@ public:
     ~Bureaucrat();
     int getGrade();
     const string getName();
+    void BrIncrement();
+    void BrDecrement();
 };
+std::ostream& operator<<(std::ostream& os,  Bureaucrat &br);
 
 #endif
