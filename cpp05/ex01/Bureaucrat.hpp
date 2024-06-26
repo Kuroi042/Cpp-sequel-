@@ -5,15 +5,7 @@ using namespace std;
 #include <exception>
 #include "Form.hpp"
 class Form;
-// class gradeTooHighException : public std::exception
-// {
-//     public :
-//         const char* what()  const throw()
-//         {
-//                 return "Grade is too high! Must be between 1 and 150.";
-//         };
-// };
-
+ 
 class gradeTooLowException : public std::exception
 {
         public :
@@ -31,15 +23,16 @@ private:
     int grade;
 
 public:
-
+    Bureaucrat(const Bureaucrat &original);
+    Bureaucrat& operator=(const Bureaucrat &original);
     Bureaucrat();
     Bureaucrat(const std::string _name, const int _grade);
     ~Bureaucrat();
     int getGrade();
     const string getName();
     void signForm(Form& fr);
-    void BrIncrement();
-    void BrDecrement();
+    void increment();
+    void decrement();
     class gradeTooHighException : public std::exception
 {
     public :
