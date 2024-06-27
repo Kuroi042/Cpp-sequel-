@@ -2,7 +2,8 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include <iostream>
-#include <stdio.h>
+#include <cstdlib>
+#include <ctime>
 
 class AForm;
 class RBGradeTooHighException : public std::exception

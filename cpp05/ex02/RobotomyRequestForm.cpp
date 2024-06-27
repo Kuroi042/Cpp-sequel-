@@ -1,6 +1,4 @@
 #include "RobotomyRequestForm.hpp"
-#include <cstdlib>
-#include <ctime>
 const char *RBGradeTooHighException::what() const throw()
 {
     return " Aie ! Grade is too High! Must respect the RobotomyRequest Form ";

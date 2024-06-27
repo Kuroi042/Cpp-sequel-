@@ -3,14 +3,13 @@
 
 #include <iostream>
 #include <exception>
-using namespace std;
 #include "Bureaucrat.hpp"
 class Bureaucrat;
 
 class AForm
 {
 private:
-    const string _name;
+    const std::string _name;
     bool isSigned;
     int const grade2sign;
     int const grade2exec;
@@ -18,7 +17,7 @@ public:
     AForm();
     AForm(std::string const name, int grade2sign, int grade2exec);
      virtual ~AForm();
-    string const getName() const ;
+    std::string const getName() const ;
         AForm(const AForm &other);
     AForm& operator=(const AForm &original);
 

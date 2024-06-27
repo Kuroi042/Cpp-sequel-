@@ -34,7 +34,7 @@ AForm::AForm(std::string name, int grade, int gradeExec) : _name(name), grade2si
         throw FormGradeTooLowException();
 }
 
-string const AForm::getName() const
+std::string const AForm::getName() const
 {
     return _name;
 }
