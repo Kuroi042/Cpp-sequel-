@@ -1,15 +1,35 @@
 #include "Bureaucrat.hpp"
 
-
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : name("none"), grade(150)
 {
-        cout << "default constractor for bureaucrate\n ";
 }
+ const char*  Bureaucrat::gradeTooHighException::what()  const throw() 
+        {
+                               return "Grade is too high! Must be between 1 and 150.";
+ 
+        }
+         const char*  Bureaucrat::gradeTooLowException::what()  const throw() 
+        {
+                return "Grade is too low! Must be between 1 and 150.";
+ 
+        }
+
 
 Bureaucrat::~Bureaucrat()
 {
-        cout << "destractor for bureaucrate\n ";
 }
+ Bureaucrat &Bureaucrat::operator=(  const Bureaucrat &original)
+{       
+        if(this!= &original)
+                {
+                        grade =  original.grade;
+                }
+        return *this;
+     
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &original) : name(original.name), grade(original.grade) 
+{}
 
 Bureaucrat::Bureaucrat(const std::string _name, int _grade) : name(_name)
 {
@@ -18,7 +38,6 @@ Bureaucrat::Bureaucrat(const std::string _name, int _grade) : name(_name)
                 throw gradeTooHighException();
         if (grade > 150)
                 throw gradeTooLowException();
-        cout << "Param Constractor name == " <<getName() << " ||  grade == " << getGrade()<< std::endl;
 }
 
 int Bureaucrat::getGrade()
@@ -26,26 +45,27 @@ int Bureaucrat::getGrade()
         return grade;
 }
 
-const string Bureaucrat::getName()
-        {
-                return name;
-        }
+const std::string Bureaucrat::getName()
+{
+        return name;
+}
 
-std::ostream& operator<<(std::ostream& os,  Bureaucrat &br)
+std::ostream &operator<<(std::ostream &os, Bureaucrat &br)
 
-        {
-                os<<"<< overload Bureacrate name = "<<br.getName()<< "Bureaucrate Grade = "<<br.getGrade()<<std::endl;
-                return (os);
-        }
- void Bureaucrat::BrDecrement()
-        {
-                grade++;
-                if(getGrade()>150)
-                        throw gradeTooLowException();
-        }
- void Bureaucrat::BrIncrement()
-        {
-                grade--;
-                if(getGrade()<1)
-                        throw gradeTooHighException();
-        }
+{
+        os << br.getName() << " Bureaucrate Grade " << br.getGrade();
+        return (os);
+}
+
+void Bureaucrat::decrement()
+{
+        grade++;
+        if (getGrade() > 150)
+                throw gradeTooLowException();
+}
+void Bureaucrat::increment()
+{
+        grade--;
+        if (getGrade() < 1)
+                throw gradeTooHighException();
+}

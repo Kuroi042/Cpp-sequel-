@@ -43,7 +43,7 @@ int Bureaucrat::getGrade()
 {
         return grade;
 }
-const string Bureaucrat::getName()
+const std::string Bureaucrat::getName()
 {
         return name;
 }
@@ -57,7 +57,7 @@ void Bureaucrat::signForm(Form &fr)
         else{
 
                 std::cout<< name <<" couldnt sign form\n";
-                throw gradeTooLowException();
+                // throw gradeTooLowException(); //no need !! 
 }
 }
 

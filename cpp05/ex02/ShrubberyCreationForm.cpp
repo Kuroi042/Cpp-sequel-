@@ -42,7 +42,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor)  const
             std::cout<<"Failed to open the file.\n";
         }
 
-        std::cout << "Creating Shrubbery" << std::endl;
+        std::cout << "Creating Shrubbery\n" << std::endl;
         
         outfile << "       _-_\n";
         outfile << "   ~ ~/~~   ~~\\\n";

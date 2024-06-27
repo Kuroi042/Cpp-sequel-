@@ -67,3 +67,11 @@ bool AForm::beSigned(Bureaucrat const &br)
     }
     return isSigned;
 }
+
+
+std::ostream &operator<<(std::ostream &os, AForm &form)
+{
+    os << "Form Name: " << form.getName() << "\n";
+    
+    return os;
+}

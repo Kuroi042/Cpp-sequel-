@@ -42,5 +42,6 @@ public:
 };
     };
 
+std::ostream& operator<<(std::ostream &os,  AForm &form);
 
 #endif

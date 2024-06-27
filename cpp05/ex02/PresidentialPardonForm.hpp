@@ -13,7 +13,12 @@ class PrBGradeTooLowException: public std::exception
         const char *what() const throw();
  
     };
-    
+    class PrBGGradeTooLow2execException: public std::exception
+    {
+        public:
+        const char *what() const throw();
+ 
+    };
 class PresidentialPardonForm : public AForm
     {   
 

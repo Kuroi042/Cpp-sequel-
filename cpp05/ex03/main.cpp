@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-int main(){ 
+int main2(){ 
         try
         {
                 Intern inter;
@@ -26,7 +26,7 @@ int main(){
                 std::cout << *f3 << std::endl;
                  delete f3;
                                 std::cout<<"end f3\n";
-
+        while(1){}
                 AForm *f4 = inter.makeForm("incorrect form", "f4");
                 std::cout << *f4 << std::endl;
                                 std::cout<<"end f4\n";
@@ -36,5 +36,10 @@ int main(){
                 std::cout << e.what() << std::endl;
         }
         return (0);
+}
+int main()      
+{
+        main2();
+        while(1){}
 }
 

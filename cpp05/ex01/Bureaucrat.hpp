@@ -1,20 +1,11 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 #include <iostream>
-using namespace std;
-#include <exception>
+ #include <exception>
 #include "Form.hpp"
 class Form;
  
-class gradeTooLowException : public std::exception
-{
-        public :
 
-        const char* what() const throw()
-        {
-                return "Grade is too low! Must be between 1 and 150.";
-        }
-};
 
 class Bureaucrat
 {
@@ -29,7 +20,7 @@ public:
     Bureaucrat(const std::string _name, const int _grade);
     ~Bureaucrat();
     int getGrade();
-    const string getName();
+    const std::string getName();
     void signForm(Form& fr);
     void increment();
     void decrement();
