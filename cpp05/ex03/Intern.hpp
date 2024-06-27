@@ -11,9 +11,9 @@
 class Intern{
 
 public:
-Intern(){};
-~Intern(){};
-AForm *makeForm(std::string NameForm , std::string Target);
+Intern();
+~Intern();
+AForm *makeForm(const std::string &NameForm , std::string Target);
 AForm *FormRobotomyRequest(std::string target);
 AForm *FormShrubberyCreation(std::string target);
 AForm *FormPresidentialPardon(std::string target);

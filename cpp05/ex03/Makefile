@@ -1,7 +1,7 @@
 NAME = 	Bureaucrat03
 
 CC = c++  
-CXXFLAGS =    -g -std=c++98   # -fsanitize=thread -g 
+CXXFLAGS =  -Wall -Wextra -Werror   -g -std=c++98   # -fsanitize=thread -g 
 
 SRC_PS = main.cpp Intern.cpp Bureaucrat.cpp ShrubberyCreationForm.cpp   RobotomyRequestForm.cpp  PresidentialPardonForm.cpp AForm.cpp
 OBJS_C = ${SRC_PS:.cpp=.o} 

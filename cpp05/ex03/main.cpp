@@ -9,25 +9,27 @@
 int main(){ 
         try
         {
-                Intern i1;
-                AForm *f1 = i1.makeForm("ShrubberyCreation", "f1");
-                std::cout << *f1 << std::endl;
-                delete f1;
+                Intern inter;
+                AForm *f1 ;
+                 f1 = inter.makeForm("RobotomyRequest", "f1");
+                
+                          std::cout << *f1 << std::endl;
+             delete f1;
+ 
                 std::cout<<"end f1\n";
-                AForm *f2 = i1.makeForm("PresidentialPardon", "f2");
+                AForm *f2 = inter.makeForm("PresidentialPardon", "f2");
                 std::cout << *f2 << std::endl;
-                delete f2;
+                  delete f2;
                                 std::cout<<"end f2\n";
 
-                AForm *f3 = i1.makeForm("RobotomyRequest", "f3");
+                AForm *f3 = inter.makeForm("ShrubberyCreation", "f3");
                 std::cout << *f3 << std::endl;
-                delete f3;
+                 delete f3;
                                 std::cout<<"end f3\n";
 
-                AForm *f4 = i1.makeForm("zabw9lwa", "f4");
+                AForm *f4 = inter.makeForm("incorrect form", "f4");
                 std::cout << *f4 << std::endl;
                                 std::cout<<"end f4\n";
-
         }
         catch (std::exception &e)
         {
@@ -35,3 +37,4 @@ int main(){
         }
         return (0);
 }
+
