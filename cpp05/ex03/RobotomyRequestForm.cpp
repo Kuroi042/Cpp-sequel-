@@ -32,7 +32,7 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 
 if (executor.getGrade() <= getGrade2sign() && executor.getGrade() <= getGrade2exec())
     {
-srand(static_cast<unsigned int>(time(nullptr)));
+srand((time(nullptr)));
 int randomNumber = rand() % 2; 
  if (randomNumber == 0)
             {
