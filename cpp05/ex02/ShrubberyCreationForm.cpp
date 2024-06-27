@@ -1,15 +1,26 @@
 #include "ShrubberyCreationForm.hpp"
-#include <stdio.h>
 #include <fstream>
 
 
 
+const char*  SHGradeTooLow2execException:: what() const throw()
+    {
+        return "  Grade is too Low to execute! Must respect the ShrubberyCreation Form ";
+    }
+
+const char*  SHGradeTooHighException:: what() const throw()
+    {
+        return "  Grade is too high! Must respect the ShrubberyCreation Form ";
+    }
+const char*  SHGradeTooLowException:: what() const throw()
+    {
+        return " Grade is too low! Must respect the ShrubberyCreation Form";
+    } 
+
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm("ShrubberyCreationForm", 145, 137), target(target) {
-        cout<<"calling constractor for ShrubberyCreationForm class target is == " <<target<<std::endl;
-        
-    }
+     }
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor)  const
 {
@@ -17,30 +28,37 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor)  const
         {   
             throw SHGradeTooLowException();
         }
-    if(executor.getGrade() <  getGrade2exec()) 
+    if(executor.getGrade() >  getGrade2exec()) 
         {
-            throw     SHGradeTooHighException();
+            
+            throw     SHGradeTooLow2execException();
         }
 
-    if(executor.getGrade() <=  getGrade2sign() && executor.getGrade() >getGrade2exec())
+    if(executor.getGrade() <=  getGrade2sign() && executor.getGrade() <= getGrade2exec())
   {   
-    printf("haha\n");
+
       std::ofstream outfile((target + "_shrubbery").c_str());
-    if (outfile.is_open()) {
+       if (outfile.fail()) {
+            std::cout<<"Failed to open the file.\n";
+        }
+
+        std::cout << "Creating Shrubbery" << std::endl;
+        
         outfile << "       _-_\n";
-        outfile << "    /~~   ~~\\\n";
-        outfile << " /~~         ~~\\\n";
-        outfile << "{     chajara    }\n";
-        outfile << " \\  _-     -_  /\n";
+        outfile << "   ~ ~/~~   ~~\\\n";
+        outfile << " /~~    ~~  ~~u~~ ~~\\\n";
+        outfile << "{  ~~ chajara  ~~~}\n";
+        outfile << " \\  _-  ~~ -_~~/\n";
         outfile << "   ~  \\\\ //  ~\n";
-        outfile << "_- -   | | _- _\n";
-        outfile << "  _ -  | |   -_\n";
-        outfile << "      //  \\ \\\\\n";
-        outfile << "     // Jesus\\   \\\\\n";
+        outfile << "_- -   |||| _- _\n";
+        outfile << "  _ -  ||||   -_\n";
+        outfile << "      //||\\\\\\\\\n";
+        outfile << "     //roots\\   \\\\\n";
+
         outfile.close();
     }
-  }
-     else {
-        std::cerr << "Error: Could not create file " << target + "_shrubbery" << std::endl;
-    }
+ 
 }
+ShrubberyCreationForm::~ShrubberyCreationForm()
+    {
+     }

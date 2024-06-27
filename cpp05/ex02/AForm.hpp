@@ -6,25 +6,6 @@
 using namespace std;
 #include "Bureaucrat.hpp"
 class Bureaucrat;
-class GradeTooHighException : public std::exception
-{
-public:
-    const char *what() const throw()
-    {
-        return "Grade is too high! Must respect the range of the form.";
-    }
-};
-class GradeTooLowException : public std::exception
-{
-
-public:
-    const char *what() const throw()
-    {
-        return "Grade is too low! Must respect the range of the form";
-    }
-};
-
-
 
 class AForm
 {
@@ -38,11 +19,27 @@ public:
     AForm(std::string const name, int grade2sign, int grade2exec);
      virtual ~AForm();
     string const getName() const ;
+        AForm(const AForm &other);
+    AForm& operator=(const AForm &original);
+
     bool getIsSigned() const ;
     int getGrade2sign() const;
     int getGrade2exec() const;
-     void beSigned(  Bureaucrat const &br);
+    bool beSigned(  Bureaucrat const &br);
     virtual void execute(const Bureaucrat  &executor) const = 0 ;
+
+     class FormGradeTooHighException : public std::exception
+{
+public:
+    const char *what() const throw();
+};
+
+class FormGradeTooLowException : public std::exception
+{
+
+public:
+    const char *what() const throw();
+};
     };
 
 

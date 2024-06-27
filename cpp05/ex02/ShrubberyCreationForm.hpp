@@ -3,24 +3,25 @@
 #include <iostream>
 #include <fstream>
 #include "AForm.hpp"
-// #include "Bureaucrat.hpp"
 class AForm;
 class SHGradeTooHighException : public std::exception
 {
 public:
-    const char *what() const throw()
-    {
-        return "Grade is too high! Must respect the ShrubberyCreation Form ";
-    }
+    const char *what() const throw();
+ 
 };
+class SHGradeTooLow2execException : public std::exception
+{
+public:
+    const char *what() const throw();
+ 
+};
+
 class SHGradeTooLowException : public std::exception
 {
 
 public:
-    const char *what() const throw()
-    {
-        return "Grade is too low! Must respect the ShrubberyCreation Form";
-    }
+    const char *what() const throw();
 };
 class ShrubberyCreationForm : public AForm {
 private :
@@ -28,9 +29,7 @@ std::string const  target;
 public :
     ShrubberyCreationForm(const std::string &target);
     void execute( Bureaucrat const &executor)  const;
-    ~ShrubberyCreationForm(){
-        std::cout<<"destractor for ShrubberyCreationForm\n";
-    };
+    ~ShrubberyCreationForm();
 };
 
 #endif
