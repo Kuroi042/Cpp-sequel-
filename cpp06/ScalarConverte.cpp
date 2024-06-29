@@ -13,11 +13,11 @@ public:
                 {
                         printf("raw is digit\n");
                 }
-              else   if (is_what(raw) == 2)
+                else if (is_what(raw) == 2)
                 {
                         printf("raw is alpha\n");
                 }
-              else   if (is_what(raw) == 3)
+                else if (is_what(raw) == 3)
                 {
                         printf("raw is ta9lwa\n");
                 }
@@ -26,22 +26,37 @@ public:
         {
                 bool is_digit = 0;
                 bool is_alpha = 0;
-
+                int j = 0;
                 for (int i = 0; i < (int)raw.length(); i++)
                 {
-                        if (isdigit(raw[i]) && is_alpha != 1)
+                        j = 0;
+                        while (j < i)
                         {
-                                is_digit = 1;
-                                return 1;
-                        }
-                        else if (isalpha(raw[i])&& is_digit != 1)
-                        {
-                                is_alpha = 1;
-                                return 2;
-                        }
+                                if (isdigit(raw[i]) && is_alpha != 1)
+                                {
+                                                                                                printf("mamamama\n");
 
-                        else 
-                                return 3;
+                                        is_digit = 1;
+                                        // return 1;
+                                }
+                                else if (isalpha(raw[i]) && is_digit != 1)
+                                {
+                                                                                                printf("papa\n");
+
+                                        is_alpha = 1;
+                                        // return 2;
+                                }
+
+                                else if(is_digit == 1 && is_alpha == 1 )
+                                {
+                                        {
+                                                        printf("mamamama\n");
+                                                return 3;
+                                                break;
+                                        }
+                                }
+                                j++;
+                        }
                 }
 
                 return 0;
@@ -60,4 +75,44 @@ int main(int argc, char **argv)
         else
                 std::cout << "argument are incorrect\n";
         return (EXIT_FAILURE);
+}
+
+// for (int i = 0; i < (int)raw.length(); i++)
+// {
+//         for(int j = 0;j<i;j++){
+//         if (isdigit(raw[j]) && is_alpha != 1)
+//         {
+//                 is_digit = 1;
+//                 return 1;
+//         }
+//         else if (isalpha(raw[j])&& is_digit != 1)
+//         {
+//                 is_alpha = 1;
+//                 return 2;
+//         }
+
+//         else {
+//         printf("makayn ta9lwa\n");
+//                 return 3;
+//         }
+//         }
+// }
+
+size_t  ft_strcspn(const char *s, const char *reject)
+{
+    int     i = 0;
+    int     j = 0;
+
+    while (s[i] != '\0')
+    {
+	j = 0;
+        while (reject[j] != '\0')
+        {
+            if(s[i] == reject[j])
+                return (i);
+            j++;
+        }
+        i++;
+    }
+    return (i);
 }
