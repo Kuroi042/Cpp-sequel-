@@ -9,55 +9,54 @@ private:
 public:
         static void convert(std::string raw)
         {
-                if (is_what(raw) == 1)
-                {
-                        printf("raw is digit\n");
-                }
-                else if (is_what(raw) == 2)
-                {
-                        printf("raw is alpha\n");
-                }
-                else if (is_what(raw) == 3)
-                {
-                        printf("raw is ta9lwa\n");
-                }
+
+            
+                 if (checkdigit(raw) == 2)
+                        printf("all digit\n");
+                else if (checkdigit(raw) == 1)
+                        printf("all alpha\n");
+                        else 
+                        printf("errpr\n");
         }
-        static int is_what(std::string raw)
+        static int checkdigit(std::string raw)
         {
-                bool is_digit = 0;
-                bool is_alpha = 0;
-                int j = 0;
-                for (int i = 0; i < (int)raw.length(); i++)
+                int i = 0;
+                bool digit = 0;
+                bool alpha = 0;
+                // case all digit
+                while (raw[i] != '\0')
                 {
-                        j = 0;
-                        while (j < i)
+                        if (isdigit(raw[i]))
                         {
-                                if (isdigit(raw[i]) && is_alpha != 1)
-                                {
-                                                                                                printf("mamamama\n");
-
-                                        is_digit = 1;
-                                        // return 1;
-                                }
-                                else if (isalpha(raw[i]) && is_digit != 1)
-                                {
-                                                                                                printf("papa\n");
-
-                                        is_alpha = 1;
-                                        // return 2;
-                                }
-
-                                else if(is_digit == 1 && is_alpha == 1 )
-                                {
-                                        {
-                                                        printf("mamamama\n");
-                                                return 3;
-                                                break;
-                                        }
-                                }
-                                j++;
+                                digit = 1;
                         }
+                        else
+                                break;
+                        i++;
                 }
+                i = 0;
+                while (raw[i] != '\0')
+                {
+                        if (isalpha(raw[i]))
+                        {
+                                alpha = 1;
+                        }
+                        else
+                                break;
+                        i++;
+                }
+
+                i = 0;
+
+                if (raw[i] == '\0')
+                {
+                        if (alpha == 1)
+                                return 1;
+                        if (digit == 1)
+                                return 2;
+                }
+                else if (raw[i] != '\0')
+                        return 3;
 
                 return 0;
         }
@@ -70,7 +69,6 @@ int main(int argc, char **argv)
 
                 std::string raw = (std::string)argv[1];
                 ScalarConverte::convert(raw);
-                // std::cout<<raw <<std::endl;
         }
         else
                 std::cout << "argument are incorrect\n";
@@ -97,22 +95,3 @@ int main(int argc, char **argv)
 //         }
 //         }
 // }
-
-size_t  ft_strcspn(const char *s, const char *reject)
-{
-    int     i = 0;
-    int     j = 0;
-
-    while (s[i] != '\0')
-    {
-	j = 0;
-        while (reject[j] != '\0')
-        {
-            if(s[i] == reject[j])
-                return (i);
-            j++;
-        }
-        i++;
-    }
-    return (i);
-}
