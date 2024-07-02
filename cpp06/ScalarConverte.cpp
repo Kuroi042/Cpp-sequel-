@@ -7,43 +7,62 @@ private:
         std::string rawString;
 
 public:
-        static void convert(std::string raw)
+        static int checkchar(std::string str)
         {
-        if(checkRaw(raw) == 1)
-                printf("is digit\n");
-        else if(checkRaw(raw) == 2)
-                printf("is alpha");
-        else 
-                printf("error\n");
+
+                if (str.size() > 1 || !isprint(str[0]))
+                        return 0;
+                else
+                        return 1;
         }
-        static int checkRaw(std::string raw)
+
+        static int checkDegit(std::string str)
         {
                 int i = 0;
                 bool digit = 0;
-                bool alpha = 0;
-                while (raw[i] != '\0')
+                if ((str[0] == '0' && str[1] == '0') || (str[0] == '0' && str.size() > 1))
+                        return 0;
+                while (str[i] != '\0')
                 {
-                        if (isdigit(raw[i]))
-                                digit = 1;
-                        else
-                                break;
+                        if (str[0] =='.' ||str[str.size()] == '.')
+                                return 1;
+                             else    if (isdigit(str[i])|| str[i] == '.')
+                                        digit = 1;
+                                else
+                                        break;
                         i++;
                 }
-                if (raw[i] == '\0' && digit)
+                if (str[i] == '\0' && digit)
                         return 1;
+                return 0;
+        }
+        static void caseDigit(std::string raw)
+        {
+                std::cout << "char : " << "impossible" << std::endl;
+                std::cout << "int : " << raw << std::endl;
+                std::cout << "float : " << raw << ".0f" << std::endl;
+                std::cout << "double : " << raw << ".0" << std::endl;
+        }
 
-                i = 0;
-                while (raw[i] != '\0')
-                {
-                        if (isalpha(raw[i]))
-                                alpha = 1;
-                        else
-                                break;
-                        i++;
-                }
-                if (raw[i] == '\0' && alpha)
-                        return 2;
-                return 3;
+        static void caseChar(std::string raw)
+        {
+                std::cout << "char : " << raw[0] << std::endl;
+                std::cout << "int : " << "impossible" << std::endl;
+                std::cout << "float : " << "impossible" << std::endl;
+                std::cout << "double : " << "impossible" << std::endl;
+        }
+        static void convert(std::string raw)
+        {
+                // if (checkDegit(raw))
+                //         caseDigit(raw);
+
+            if (checkchar(raw))
+                        caseChar(raw);
+                else if (checkDegit(raw))
+                        printf("is float\n");
+                // (raw);
+                else if (!checkDegit(raw) || !checkchar(raw))
+                        printf(" input incorrect \n");
         }
 };
 
@@ -57,6 +76,5 @@ int main(int argc, char **argv)
         }
         else
                 std::cout << "argument are incorrect\n";
-        return (EXIT_FAILURE);
+        return (1);
 }
- 
