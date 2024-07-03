@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include <cstdlib>
+
+#include <string>
 class ScalarConverte
 {
 private:
@@ -24,6 +27,8 @@ public:
                 size_t len = str.length();
 
                 if (len == 0)
+                        return 0;
+                if(str[len-1] == '.')
                         return 0;
                 if (str[len - 1] == 'f')
                         has_f = true; // check for float
@@ -55,13 +60,9 @@ public:
                 if (hasDot && hasDigit)
                 {
                         if (has_f)
-                        {
                                 return 3; // is float
-                        }
                         else
-                        {
                                 return 2; // case double
-                        }
                 }
 
                 if (hasDigit)
@@ -75,7 +76,13 @@ public:
         static void caseDigit(std::string raw)
         {
 
-                std::cout << "char : " << "*" << std::endl;
+                std::cout << "case is int \n";
+                int i = atoi(raw.c_str());
+                if (isprint(i))
+                        std::cout << "char : " << (char)i << std::endl;
+                else
+                        std::cout << "char : " << "later" << std::endl;
+
                 std::cout << "int : " << raw << std::endl;
                 std::cout << "float : " << raw << ".0f" << std::endl;
                 std::cout << "double : " << raw << ".0" << std::endl;
@@ -83,25 +90,42 @@ public:
         static void caseFloat(std::string str)
         {
                 int i = 0;
-                        for(i = 0; i<(int)str.length() ; i++)
-                                {
-                                        if(str[i] == '.')
-                                                 break;
-                                }
 
-                        std::cout<<str<<::std::endl;
-                std::cout << "char : " << "*"<< std::endl;
-                std::cout << "int : " << str.substr(0,i) << std::endl;
-                 std::cout << "float : " << str << std::endl;
-                 std::cout << "double : " << str.substr(0,i).append(".0") << std::endl;
+                for (i = 0; i < (int)str.length(); i++)
+                {
+                        if (str[i] == '.')
+                                break;
+                }
+                std::cout << "case is float\n";
+
+                std::cout << str << ::std::endl;
+                std::cout << "char : " << "*" << std::endl;
+                std::cout << "int : " << str.substr(0, i) << std::endl;
+                std::cout << "float : " << str << std::endl;
+                std::cout << "double : " << str.substr(0, i).append(".0") << std::endl;
+        }
+        static void caseDouble(std::string str)
+        {
+                int i = 0;
+                for (i = 0; i < (int)str.length(); i++)
+                {
+                        if (str[i] == '.')
+                                break;
+                }
+
+                std::cout << "case is double\n";
+                std::cout << str << ::std::endl;
+                std::cout << "char : " << "Non displayable" << std::endl;
+                std::cout << "int : " << str.substr(0, i) << std::endl;
+                std::cout << "float : " << str << "f" << std::endl;
+                std::cout << "double : " << str << std::endl;
         }
 
         static void caseChar(std::string raw)
 
         {
-                
-                        
-                std::cout << "char : " << raw  << std::endl;
+                std::cout << "case is char\n";
+                std::cout << "char : " << raw[0] << std::endl;
                 std::cout << "int : " << "impossible" << std::endl;
                 std::cout << "float : " << "impossible" << std::endl;
                 std::cout << "double : " << "impossible" << std::endl;
@@ -122,12 +146,7 @@ public:
                 }
 
                 else if (checkDigit(raw) == 2)
-                {
-                        std::cout << "char: impossible" << std::endl;
-                        std::cout << "int: impossible" << std::endl;
-                        std::cout << "float: " << raw << "f" << std::endl;
-                        std::cout << "double: " << raw << std::endl;
-                }
+                        caseDouble(raw);
                 else
                 {
                         std::cout << "input incorrect" << std::endl;
