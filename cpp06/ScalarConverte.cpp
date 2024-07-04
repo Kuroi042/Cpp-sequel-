@@ -10,6 +10,22 @@ private:
         std::string rawString;
 
 public:
+        // static int checkChar(std::string str)
+        // {
+
+        //         if (str.size() == 1 && isprint(str[0]) && !isdigit(str[0]))
+        //                 return 1;
+        //         else
+        //                 return 0;
+        // }
+
+#include <string>
+#include <cctype>
+
+#include <iostream>
+#include <string>
+#include <cctype>
+
         static int checkChar(std::string str)
         {
 
@@ -18,140 +34,140 @@ public:
                 else
                         return 0;
         }
+static int checkDigit(const std::string& str) {
+    bool has_f = false;
+    bool hasDot = false;
+    bool hasDigit = false;
+    size_t len = str.length();
 
-        static int checkDigit(const std::string &str)
-        {
-                bool has_f = false;
-                bool hasDot = false;
-                bool hasDigit = false;
-                size_t len = str.length();
+    if (len == 0)
+        return 0;
+    if (str == "f")
+        return 0; // f alone is not valid
+    if (str[len - 1] == '.')
+        return 0; 
+    if (str[len - 1] == 'f') {
+        has_f = true; // Check for float at the end
+    }
 
-                if (len == 0)
-                        return 0;
-                if(str[len-1] == '.')
-                        return 0;
-                if (str[len - 1] == 'f')
-                        has_f = true; // check for float
+    size_t start = 0;
 
-                size_t lenght = len;
-                if (has_f) // to not include "f"
-                {
-                        lenght = len - 1;
-                }
+    if (str[0] == '+' || str[0] == '-') {
+        start = 1;
+    }
 
-                for (size_t i = 0; i < lenght; ++i)
-                {
-                        if (str[i] == '.')
-                        {
-                                if (hasDot)
-                                        return 0;
-                                hasDot = true;
-                        }
-                        else if (isdigit(str[i]))
-                        {
-                                hasDigit = true;
-                        }
-                        else
-                        {
-                                return 0;
-                        }
-                }
+    size_t end = has_f ? len - 1 : len;
 
-                if (hasDot && hasDigit)
-                {
-                        if (has_f)
-                                return 3; // is float
-                        else
-                                return 2; // case double
-                }
-
-                if (hasDigit)
-                {
-                        return 1; // Integer
-                }
-
-                return 0;
+    for (size_t i = start; i < end; ++i) {
+        if (str[i] == '.') {
+            if (hasDot)
+                return 0; // multiple . . .
+            hasDot = true;
+        } else if (isdigit(str[i])) {
+            hasDigit = true;
+        } else {
+            return 0; // Non-digit 
         }
+    }
 
-        static void caseDigit(std::string raw)
-        {
 
-                std::cout << "case is int \n";
-                int i = atoi(raw.c_str());
-                if (isprint(i))
-                        std::cout << "char : " << (char)i << std::endl;
-                else
-                        std::cout << "char : " << "later" << std::endl;
-
-                std::cout << "int : " << raw << std::endl;
-                std::cout << "float : " << raw << ".0f" << std::endl;
-                std::cout << "double : " << raw << ".0" << std::endl;
+    if (hasDot) {
+        size_t dotPos = str.find('.');
+        if (dotPos == end - 1 && has_f) {
+            return 3; 
         }
-        static void caseFloat(std::string str)
-        {
-                int i = 0;
+    }
 
-                for (i = 0; i < (int)str.length(); i++)
-                {
-                        if (str[i] == '.')
-                                break;
-                }
-                std::cout << "case is float\n";
+    // Check if  invalid integer 5f
+    if (!hasDot && has_f) {
+        return 0;
+    }
 
-                std::cout << str << ::std::endl;
-                std::cout << "char : " << "*" << std::endl;
-                std::cout << "int : " << str.substr(0, i) << std::endl;
-                std::cout << "float : " << str << std::endl;
-                std::cout << "double : " << str.substr(0, i).append(".0") << std::endl;
+    if (hasDot && hasDigit) {
+        if (has_f) {
+      
+            size_t dotPos = str.find('.');
+            if (dotPos == start || dotPos == end - 1) {
+                return 0; 
+            }
+            return 3; // Valid float with f
+        } else {
+            return 2; // Valid double without f
         }
-        static void caseDouble(std::string str)
-        {
-                int i = 0;
-                for (i = 0; i < (int)str.length(); i++)
-                {
-                        if (str[i] == '.')
-                                break;
-                }
+    }
 
-                std::cout << "case is double\n";
-                std::cout << str << ::std::endl;
-                std::cout << "char : " << "Non displayable" << std::endl;
-                std::cout << "int : " << str.substr(0, i) << std::endl;
-                std::cout << "float : " << str << "f" << std::endl;
-                std::cout << "double : " << str << std::endl;
-        }
+    if (hasDigit)
+        return 1; // Valid integer
+    else
+        return 0; // Invalid
+}
 
-        static void caseChar(std::string raw)
+static void caseDigit(const std::string& raw) {
+    std::cout << "case is int\n";
+    int i = atoi(raw.c_str());
+    if (isprint(i))
+        std::cout << "char : " << i << std::endl;
+    else
+        std::cout << "char : " << "not displayble" << std::endl;
+    std::cout << "int : " << i << std::endl;
+    std::cout << "float : " << static_cast<float>(i)<< ".0f" << std::endl;
+    std::cout << "double : " << static_cast<float>(i) << ".0" << std::endl;
+}
 
-        {
-                std::cout << "case is char\n";
-                std::cout << "char : " << raw[0] << std::endl;
-                std::cout << "int : " << "impossible" << std::endl;
-                std::cout << "float : " << "impossible" << std::endl;
-                std::cout << "double : " << "impossible" << std::endl;
-        }
-        static void convert(const std::string &raw)
-        {
-                if (checkChar(raw))
-                {
-                        caseChar(raw);
-                }
-                else if (checkDigit(raw) == 1)
-                {
-                        caseDigit(raw);
-                }
-                else if (checkDigit(raw) == 3)
-                {
-                        caseFloat(raw);
-                }
+static void caseFloat(const std::string& str) {
+    int i = 0;
+    for (i = 0; i < (int)str.length(); i++) {
+        if (str[i] == '.')
+            break;
+    }
 
-                else if (checkDigit(raw) == 2)
-                        caseDouble(raw);
-                else
-                {
-                        std::cout << "input incorrect" << std::endl;
-                }
-        }
+    std::cout << "case is float\n";
+    std::cout << str << std::endl;
+    std::cout << "char : " << "*" << std::endl;
+    std::cout << "int : " << static_cast<int>(atoi( str.substr(0, i).c_str())) << std::endl;
+    std::cout << "float : " << str << std::endl;
+    std::cout << "double : " << static_cast<float>(atoi( str.substr(0, i).c_str()) )<< ".0" << std::endl;
+}
+
+static void caseDouble(const std::string& str) {
+    int i = 0;
+    for (i = 0; i < (int)str.length(); i++) {
+        if (str[i] == '.')
+            break;
+    }
+
+    std::cout << "case is double\n";
+    std::cout << str << std::endl;
+    std::cout << "char : " << "Non displayable" << std::endl;
+    std::cout << "int : " << static_cast<int>((atoi( str.substr(0, i).c_str()))) << std::endl;
+    std::cout << "float : " << static_cast<float>((atoi( str.substr(0, i).c_str()))) << ".0f" << std::endl;
+    std::cout << "double : " << str << std::endl;
+}
+
+static void caseChar(const std::string& raw) {
+    int i = atoi(raw.c_str());
+
+    std::cout << "case is char\n";
+    std::cout << "char : " << raw[0] << std::endl;
+    if (isascii(i))
+        std::cout << "int : " << static_cast<int>(i) << std::endl;
+    std::cout << "float : " << "impossible" << std::endl;
+    std::cout << "double : " << "impossible" << std::endl;
+}
+
+static void convert(const std::string& raw) {
+    if (checkChar(raw)) {
+        caseChar(raw);
+    } else if (checkDigit(raw) == 1) {
+        caseDigit(raw);
+    } else if (checkDigit(raw) == 3) {
+        caseFloat(raw);
+    } else if (checkDigit(raw) == 2) {
+        caseDouble(raw);
+    } else {
+        std::cout << "input incorrect" << std::endl;
+    }
+}
 };
 
 int main(int argc, char **argv)
