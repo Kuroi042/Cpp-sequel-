@@ -17,7 +17,7 @@ char: '*'
 int: 42
 float: 42.0f
 double: 42.0
-
+nan -inf/f  +inf/f  nanf
               {
                         
                         std::cout << "char: impossible" << std::endl;
