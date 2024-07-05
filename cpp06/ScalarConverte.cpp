@@ -2,7 +2,8 @@
 #include <string>
 #include <stdio.h>
 #include <cstdlib>
-
+#include <limits>
+#include <cmath>
 #include <string>
 class ScalarConverte
 {
@@ -186,33 +187,38 @@ public:
         }
         static int checkforinfinite(std::string str)
         {
-         
 
                 if (str.length() == 3)
                         if (str.find("nan") == 0)
                                 return 1;
-                        else if ()
-                        {
-                                printf("im out\n");
-                                return 0;
-                        }
-                // else if(str.length() == 3 && str.find(""));
+                        else if (str.find("nanf") == 0)
+                                return 2;
+                        else if (str.find("-inf") == 0)
+                                return 3;
+                        else if (str.find("+inf") == 0)
+                                return 4;
+                        else if (str.find("-inff") == 0)
+                                return 3;
+                         else if(str.find("+inff") == 0)
+                                return 4;
+                        
+        else    
+                std::cout<<"incorrect iput nanf\n";
+                return 0;
         }
 
-        //         static void caseofnan(std::string raw)
-        // {
-
-        // }
         static void strangeCase(std::string raw)
         {
                 if (raw == "nan")
                 {
+                        double i =  std::stod(raw.c_str());
+                     std::cout<< "double : " <<numeric_limits<double>(i)<<std::endl;
                         std::cout << raw << std::endl;
-                        std::cout << "char : " << "Non displayable" << std::endl;
-                        std::cout << "int : " < < < < std::endl;
+                        std::cout << "char : " << "impossible" << std::endl;
+                        std::cout << "int : " << "impossible"<< std::endl;
                         std::cout << "float : " << static_cast<float> < < < < "f" << std::endl;
 
-                        std::cout << "double : " < < < < std::endl;
+                        std::cout << "double : " << << std::endl;
                 }
         }
 
