@@ -2,26 +2,44 @@
 #include <string>
 #include <stdio.h>
 
-./convert 0
-char: Non displayable
-int: 0
-float: 0.0f
-double: 0.0
-./convert nan
-char: impossible
-int: impossible
-float: nanf
-double: nan
-./convert 42.0f
-char: '*'
-int: 42
-float: 42.0f
-double: 42.0
-nan -inf/f  +inf/f  nanf
-              {
-                        
-                        std::cout << "char: impossible" << std::endl;
-                        std::cout << "int: " <<str.substr(0,i)<< std::endl;
-                        std::cout << "float: " << raw << "f" << std::endl;
-                        std::cout << "double: " << raw << std::endl;
-                }
+class Base
+{
+public:
+        virtual ~Base(){};
+};
+
+class derived : public Base
+{
+};
+class derived2 : public Base
+{
+};
+Base *generate(void)
+{
+        return new derived();
+}
+Base *generate2(void)
+{
+        return new derived2();
+}
+
+void identify(Base *ptr)
+
+{
+        if (dynamic_cast<derived *>(ptr))
+        {
+                std::cout << "its class derived\n";
+        }
+        else if (dynamic_cast<derived2 *>(ptr))
+                std::cout << "its class derived222\n";
+}
+int main()
+{
+        Base *ptr = generate();
+        Base *ptr2 = generate2();
+        identify(ptr);
+        identify(ptr2);
+        delete ptr;
+        delete ptr2;
+        while(1){}
+}
