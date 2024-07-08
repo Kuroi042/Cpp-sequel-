@@ -2,7 +2,9 @@
 #include <cstdlib>
 #include <time.h>
 #include <iostream>
-
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
  
 
 Base *generate(void)
