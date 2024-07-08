@@ -3,7 +3,7 @@ NAME = 	 Converte00
 CC = c++  
 CXXFLAGS = -Wall -Wextra -Werror  -g  -std=c++98
 
-SRC_PS =   ScalarConverte.cpp # main.cpp 
+SRC_PS =   ScalarConverte.cpp   main.cpp 
 OBJS_C = ${SRC_PS:.cpp=.o} 
 
 all: $(NAME)

@@ -3,15 +3,7 @@
 #include <time.h>
 #include <iostream>
 
-class A: public Base
-    {
-    };
-class B: public Base
-    {
-    };
-class C: public Base
-    {
-    };
+ 
 
 Base *generate(void)
 {
@@ -31,12 +23,12 @@ Base *generate(void)
     case 2:
         std::cout<<"return B\n";
 
-        return new A(); 
+        return new B(); 
         break;
     case 3:
         std::cout<<"return C\n";
 
-        return new A(); 
+        return new C(); 
     
         break;
     }
@@ -76,9 +68,3 @@ void identify(Base& p) {
     std::cout << "Unknown type" << std::endl;
 }
 
-int main()
-    {
-        Base *prt  = generate();
-             identify(prt);
-        
-    }

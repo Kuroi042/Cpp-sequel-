@@ -3,7 +3,7 @@ NAME = 	 Serializer01
 CC = c++  
 CXXFLAGS = -Wall -Wextra -Werror  -g  -std=c++98
 
-SRC_PS =   Serialization.cpp  
+SRC_PS =   Serialization.cpp   main.cpp
 OBJS_C = ${SRC_PS:.cpp=.o} 
 
 all: $(NAME)

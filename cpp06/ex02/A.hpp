@@ -1,12 +1,12 @@
-// #pragma once 
-// // #include "Base.hpp"
+#ifndef A_HPP
+#define A_HPP
 
-// // class A: public Base
-// //     {
+#include "Base.hpp"
 
-// //     Base *generate(void);
-// //     void identify(Base *p);
-// //     void identify(Base &p);
+class A : public Base {
+            public :
+        A(){};
+ };
 
-// //     };
+#endif 
 

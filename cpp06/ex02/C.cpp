@@ -1,4 +1,2 @@
-#include "Base.hpp"
-class C : public Base
-{
-};
+#include "C.hpp"
+ 

@@ -1,7 +1,3 @@
-#include "Base.hpp"
-
-class B : public Base
-{
+#include "B.hpp"
 
  
-};

@@ -1,12 +1,17 @@
 #pragma once
 #include <iostream>
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+class A;
+class B;
+class C;
 class Base
     {
         public:
         virtual ~Base(){};
-        void baseprint(Base *a)
-            {
-                std::cout<<"heres the instance of a ";
-            }
-
     };
+
+    Base *generate(void);
+    void identify(Base* p);
+    void identify(Base& p);
