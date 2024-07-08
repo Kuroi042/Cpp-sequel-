@@ -1,12 +1,14 @@
-#include "Base.cpp"
-#include "A.cpp"
-#include "C.cpp"
-#include "B.cpp"
+#include "Base.hpp"
+#include "A.hpp"
+#include "C.hpp"
+#include "B.hpp"
 
 
 int main()
     {
-        Base *prt  = generate();
-             identify(prt);
-        
+        Base *ptr  = generate();
+             identify(ptr);
+             identify(*ptr);
+             delete ptr;
+            
     }
