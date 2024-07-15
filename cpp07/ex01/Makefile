@@ -1,7 +1,7 @@
 NAME = 	Iter01
 
 CC = c++  
-CXXFLAGS =  -Wall -Wextra -Werror   -g -std=c++98   # -fsanitize=thread -g 
+CXXFLAGS =   -g -std=c++98   # -fsanitize=thread -g 
 
 SRC_PS = main.cpp iter.cpp  
 OBJS_C = ${SRC_PS:.cpp=.o} 
