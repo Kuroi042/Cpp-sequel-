@@ -8,7 +8,18 @@ private:
     unsigned int size;
 
 public:
-    Array() : arr(nullptr), size(0) {}
+
+    class OutofboundException: public std::exception
+    {
+        public:
+        const char *what() const throw()
+            {
+                return "out of bound\n";
+            }
+ 
+    };
+
+    Array() : arr(NULL), size(0) {}
 
     Array(unsigned int n) : arr(new T[n])
     {

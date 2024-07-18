@@ -1,4 +1,5 @@
-#include <iostream>
+#include <cstdlib> // Include this header for srand and rand
+#include <ctime>
 #include "Array.hpp"
 
 #define MAX_VAL 750
@@ -13,11 +14,11 @@ int main(int, char**)
         numbers[i] = value;
         mirror[i] = value;
     }
-   
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
+    // //SCOPE
+    // {
+    //     Array<int> tmp = numbers;
+    //     Array<int> test(tmp);
+    // }
 
     for (int i = 0; i < MAX_VAL; i++)
     {
@@ -31,16 +32,18 @@ int main(int, char**)
     {
         numbers[-2] = 0;
     }
-    catch(...)
-{}
- 
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     try
     {
         numbers[MAX_VAL] = 0;
     }
-    catch(...)
-    {}
-  
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << '\n';
+    }
 
     for (int i = 0; i < MAX_VAL; i++)
     {
