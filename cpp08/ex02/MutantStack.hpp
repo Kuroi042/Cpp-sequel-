@@ -44,27 +44,30 @@ public:
 
     void add(int &newsize)
     {
-        bool first = 0;
-        if (newsize && first == 0)
+        static bool first = 0;
+        if (first == 0)
         {
             first = 1;
             stack.resize(newsize);
+            cout << "miaww " << stack.size() << std::endl;
+            return;
         }
-        if (first == 1)
+
+        else if (first)
         {
             newsize++;
             stack.resize(newsize);
-            cout << "miaww " << stack.size() << std::endl;
+            cout << "miaww 22 " << stack.size() << std::endl;
         }
     }
-    void push()
+    void push(int num)
     {
-        int newo = 1;
-        add(newo);
-        add(newo);
-
-        add(newo);
-
-        cout << "stack size == " << stack.size() << std::endl;
+        stack.insert(stack.begin(), num);
     }
+    void pop()
+        {
+                
+
+
+        }
 };
