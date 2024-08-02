@@ -1,20 +1,39 @@
 #include "MutantStack.hpp"
 
 int main()
+{
+    MutantStack stack;
+    std::vector<int> test;
+    test.push_back(1);
+    test.push_back(2);
+    test.push_back(3);
+    test.push_back(4);
+    test.pop_back();
+
+
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    stack.pop();
+    // stack.getvec().pop_back();
+    for (size_t i = 0; i < stack.getvec().size(); i++)
     {
-        MutantStack stack;
-        stack.push(5);
-        stack.push(55);
-        stack.pop();
-             for(size_t i = 0;i<stack.getvec().size();i++ )
-                {
-                    cout<<stack.getvec()[i]<<std::endl;
-                }
-
-                 cout << "stack size == " << stack.getvec().size() << std::endl;
-
-
+        cout <<"stack  "<< stack.getvec()[i] << std::endl;
     }
+    // cout<<"\n";
+    //     for (size_t i = 0; i < test.size(); i++)
+    // {
+    //     cout <<"test"<< test[i] << std::endl;
+    // }
+
+    cout << "stack capicity == " << stack.getvec().capacity() << std::endl;
+    cout << "stack size == " << stack.getSize()<< std::endl;
+
+    std::cout << "test Capacity: " << test.capacity() << std::endl; // Output: Capacity: 2 (initially, but can be larger)
+        std::cout << " test size: " << test.size() << std::endl; // Output: Capacity: 2 (initially, but can be larger)
+
+}
 
 //     int main()
 // {
