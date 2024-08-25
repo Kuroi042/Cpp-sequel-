@@ -1,9 +1,9 @@
-NAME = 	Mutant
+NAME = 	Span
 
 CC = c++  
-CXXFLAGS =    -std=c++98    -fsanitize=address -g 
+CXXFLAGS =  -Wall -Wextra -Werror   -g -std=c++98    #-fsanitize=address -g 
 
-SRC_PS = main.cpp 
+SRC_PS = main.cpp     
 OBJS_C = ${SRC_PS:.cpp=.o} 
 
 all: $(NAME)
