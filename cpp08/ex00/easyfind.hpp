@@ -15,24 +15,31 @@ public:
 };
 
 template <typename T>
-void easyfind(std::vector<T> &hh, int to_find)
+void easyfind(T& contoner, unsigned int to_find)
 {
     size_t i = 0;
-    if (hh.size() > 1)
+    if (contoner.size() > 1)
     {
 
-        typename std::vector<T>::iterator iter1;
-        iter1 = std::find(hh.begin(), hh.end(), to_find);
-        // typename std::vector<T>::iterator iter2;
-        // iter2 = std::find(iter1 + 1, hh.end(), to_find);
-            if(iter1!= hh.end() )
+        vector<int>::iterator iter =  contoner.begin();
+            for(iter =  contoner.begin();   iter<contoner.end(); iter++)
                 {
-                cout<<to_find<<std::endl;
-                    cout<<"the number is found\n";
-                
+                    if(*iter ==  to_find){
+                        cout<<*iter<<" miaw found \n";
+                            break;
+                     } 
                 }
-            else
+        if(iter == contoner.end())
             cout <<"number is not found\n";
+        
+        // iter1 = std::find(contoner.begin(), contoner.end(), to_find);
+        //     if(iter1!= contoner.end() )
+        //         {
+        //         cout<<to_find<<std::endl;
+        //             cout<<"the number is found\n";
+                
+        //         }
+
     } 
         else
     cout<<"the container is empty\n";
