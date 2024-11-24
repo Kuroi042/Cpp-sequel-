@@ -1,20 +1,40 @@
 #include "BitcoinExchange.hpp"
 
+void openfile(const char* argv, const std::string& fileName) {
+    
+       
+  
+    if (fileName == "data.csv"  ) {
+        std::string pathfile = "/Users/mbouderr/Desktop/cpp/cpp09/ex00/data.csv"; 
+              std::ifstream  file(pathfile.c_str());
+        if (!file.is_open()) {
+            std::cout << "DATA not opened: " << pathfile << '\n';
+        } else {
+            std::cout << "DATA opened: " << pathfile << '\n';
+        }
+     file.close();
+    }
+        
+   else  if (argv && strcmp(argv, "input.txt") == 0) {
+       std::ifstream file(argv);
+        if (!file.is_open()) {
+            std::cout << "INPUT not opened: " << argv << '\n';
+        } else {
+            std::cout << "INPUT txt opened: " << argv << '\n';
+        }
+     file.close();
+    }
+}
+
 Bitcoin::Bitcoin(char *argv)
 {
+  std::string filename = argv;
+     openfile(NULL, "data.csv");
 
-    std::ifstream file(argv);
-    if ((!file.is_open()))
-    {
-        cout << "cant open csv\n";
-        exit(1);
-    }
-    else
-    {
+    // std::cout << "XXXXXXXXXX\n";
 
-        parse_data(file);
-    }
-    file.close();
+    openfile(argv, filename);
+  
     cout << "maiwww\n";
     for (map<string, double>::iterator it = myMap.begin(); it != myMap.end(); it++)
     {
