@@ -12,7 +12,7 @@
 class Bitcoin
 {
     private :
-      std::map< string, double> myMap;
+      std::map< string, float> myMap;
     public:
          Bitcoin(){};
         Bitcoin( char *argv );
@@ -20,13 +20,11 @@ class Bitcoin
            
         ~Bitcoin(){}
  
-          map<string,double>getMap()
+          map<string,float>getMap()
             {
               return myMap;
             }
-void     parse_data(ifstream &file);
-
-
-
+void     parse_datacsv(ifstream &file);
+void  openfile(const char* argv, const std::string& fileName);
 
 };
