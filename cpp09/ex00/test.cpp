@@ -3,95 +3,224 @@
 #include <map>
 #include <cstdlib>
 #include <string>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
-int main(int argc, char **argv)
+static float convert_to_float(string &var)
 {
-    if (argc == 2)
-    {
-        fstream file(argv[1]);
-        if (!file.is_open())
-        {
-            cout << "ERROR OPEN\n";
-            exit(1);
-        }
-
-        string key, value, data;
-        string year, month, day;
-
-        while (getline(file, data))
-        {
-            // Find the pipe position
-            size_t pipe_pos = data.find("|");
-            if (pipe_pos == string::npos)
-            {
-                cout << "Invalid format, missing '|'\n";
-                continue;
-            }
-
-            key = data.substr(0, pipe_pos);
-            size_t start = key.find_first_not_of(" ");
-            size_t end = key.find_last_not_of(" ");
-            if (start == string::npos || end == string::npos)
-            {
-                key = "";
-            }
-            else
-            {
-                key = key.substr(start, end - start + 1);
-            }
-
-            value = data.substr(pipe_pos + 1);
-            start = value.find_first_not_of(" ");
-            end = value.find_last_not_of(" ");
-            if (start == string::npos || end == string::npos)
-            {
-                value = "";
-            }
-            else
-            {
-                value = value.substr(start, end - start + 1);
-            }
-
-
-            if (key.empty() ){ 
-                cout << "empty value \n";
-                continue;
-        }
-            if (value.empty()){
-                cout << "empty key \n";
-                continue;
-            }
-        }
-        cout << "key == |" << key << "|" << endl;
-        cout << "value == |" << value << "|" << endl;
-    }
+    float result;
+    stringstream ss(var);
+    ss >> result;
+    return result;
+}
+static bool valid_num(string var, bool isFloat = true)
+{
+    size_t dot_counter = count(var.begin(), var.end(), '.');
+    if (var.empty() || dot_counter > 1 || var.at(var.length() - 1) == '.')
+        return false;
+    if (var.at(0) == '-')
+        var.at(0) = '0';
+    if (isFloat)
+        return (var.find_first_not_of("0123456789.") == string::npos);
+    return (var.find_first_not_of("0123456789") == string::npos);
 }
 
-// // cout<<"value ==|" <<key<<"|"<<std::endl;
-// // cout<<"value == |"<<value<<"|"<<std::endl;
-//         size_t start_key =  key.find_first_not_of(" ");
-//         size_t  end_key =  key.find_last_not_of(" ");
-//             key  =  key.substr(start_key , end_key-start_key+1);
-//             // cout<<"final value == |"<<key<<"|"<<std::endl;
-//             size_t first_dash =  key.find('-');
-//             size_t second_dash =  key.find('-',first_dash+1);
-//         // cout<<"first dash  == "<<first_dash<<std::endl;
-//         //     cout<<"second dash  == "<<second_dash<<std::endl;
-//         year =  (atoi(key.substr(0,first_dash).c_str()));
-//         month =  (atoi(key.substr(first_dash+1, second_dash-first_dash-1).c_str()));
-//         day = (atoi(key.substr(second_dash+1).c_str()));
-//         if(year.)
 
-//     }
-//             size_t start_value =  value.find_first_not_of(" ");
-//         size_t  end_value =  value.find_last_not_of(" ");
-//          value =  value.substr(start_value , end_value-start_value+1);
-//         cout<<"value == |"<<value<<"|"<<std::endl;
 
-//                 }
+static bool ValidDate(string var)
+{
+    string month, year, day;
+    int first_dash, second_dash;
 
-// else
-//     cout << "argc is incorrect\n";
-//     }
+    // Ensure there are exactly 2 dashes
+    if (count(var.begin(), var.end(), '-') != 2)
+        return false;
+
+    // Find positions of dashes
+    first_dash = var.find('-');
+    second_dash = var.find('-', first_dash + 1);
+
+    // Extract year, month, day
+    year = var.substr(0, first_dash);
+    month = var.substr(first_dash + 1, second_dash - first_dash - 1);
+    day = var.substr(second_dash + 1);
+
+    // Validate the date components
+    if (year.length() != 4 || !valid_num(year, false) ||
+        month.length() != 2 || !valid_num(month, false) ||
+        day.length() != 2 || !valid_num(day, false) ||
+        (int)convert_to_float(year) < 1 ||
+        (int)convert_to_float(month) < 1 || (int)convert_to_float(month) > 12 ||
+        (int)convert_to_float(day) < 1 || (int)convert_to_float(day) > 31)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+
+
+
+class BitcoinExchange
+{
+private:
+    map<string, float> input;
+
+    float getExchange(const string &date);
+
+public:
+    BitcoinExchange()
+    {
+        string key;
+        string value;
+        string data;
+        ifstream file("./data.csv");
+
+        if (!file.is_open())
+        {
+            cerr << "Error: Could not open the input CSV file.\n";
+            return;
+        }
+
+        getline(file, data); // Skip the header line
+        while (getline(file, data))
+        {
+            size_t comma_pos = data.find(",");
+            if (comma_pos == string::npos)
+            {
+                cerr << "Error: Invalid CSV format (missing ',').\n";
+                continue;
+            }
+
+            key = data.substr(0, comma_pos);
+            value = data.substr(comma_pos + 1);
+
+            // Trim whitespace
+            size_t start = key.find_first_not_of(" ");
+            size_t end = key.find_last_not_of(" ");
+            key = key.substr(start, end - start + 1);
+
+            start = value.find_first_not_of(" ");
+            end = value.find_last_not_of(" ");
+            value = value.substr(start, end - start + 1);
+
+            if (!ValidDate(key) || !valid_num(value))
+            {
+                cerr << "Error: Invalid data in CSV file.\n";
+                continue;
+            }
+
+            input[key] = convert_to_float(value);
+        }
+
+        file.close();
+    }
+
+    ~BitcoinExchange() {}
+
+    void handle_data(const string &path);
+};
+
+float BitcoinExchange::getExchange(const string &date)
+{
+    float result = -1.0;
+    map<string, float>::iterator it = input.begin();
+
+    for (; it != input.end(); ++it)
+    {
+        if (it->first > date)
+            break;
+        result = it->second;
+    }
+
+    if (result == -1.0)
+    {
+        cerr << "Error: No exchange rate available for the given date or earlier.\n";
+    }
+
+    return result;
+}
+
+
+
+
+void BitcoinExchange::handle_data(const string &path)
+{
+    fstream file(path.c_str());
+    if (!file.is_open())
+    {
+        cerr << "Error: Could not open file.\n";
+        return;
+    }
+
+    string key, value, data;
+    getline(file, data);
+    size_t start = data.find_first_not_of(" ");
+    size_t end = data.find_last_not_of(" ");
+    data = data.substr(start, end - start + 1);
+
+    if (data != "date | value")
+    {
+        cerr << "Error: Invalid file format.\n";
+        file.close();
+        return;
+    }
+
+    while (getline(file, data))
+    {
+        size_t pipe_pos = data.find("|");
+        if (pipe_pos == string::npos)
+        {
+            cerr << "Error: Invalid format, missing '|'.\n";
+            continue;
+        }
+
+        key = data.substr(0, pipe_pos);
+        start = key.find_first_not_of(" ");
+        end = key.find_last_not_of(" ");
+        key = key.substr(start, end - start + 1);
+
+        value = data.substr(pipe_pos + 1);
+        start = value.find_first_not_of(" ");
+        end = value.find_last_not_of(" ");
+        value = value.substr(start, end - start + 1);
+
+        if (!ValidDate(key))
+        {
+            cerr << "Error: Invalid date format (" << key << ").\n";
+            continue;
+        }
+
+        if (!valid_num(value) || convert_to_float(value) < 0 || convert_to_float(value) > 1000)
+        {
+            cerr << "Error: Invalid value (" << value << ").\n";
+            continue;
+        }
+
+        float exchange_rate = getExchange(key);
+        if (exchange_rate != -1.0)
+        {
+            cout << key << " => " << value << " = " << exchange_rate * convert_to_float(value) << "\n";
+        }
+    }
+
+    file.close();
+}
+
+int main(int argc, char **argv)
+{
+    BitcoinExchange Database;
+    if (argc == 2)
+    {
+        Database.handle_data(argv[1]);
+    }
+    else
+    {
+        cerr << "Error: Invalid number of arguments.\n";
+    }
+
+    return 0;
+}
