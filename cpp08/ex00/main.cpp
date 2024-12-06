@@ -19,3 +19,4 @@ arr.push_back(112);
 easyfind( arr , 112 );
 
 }
+

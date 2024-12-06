@@ -1,24 +1,25 @@
 #include "Span.hpp"
 
 int main()
-    {   
-    
-         Span sp(5);
-         cout<<"size "<<sp.getSize()<<std::endl;
-         sp.addNumber(1);
-         sp.addNumber(2);
-                 sp.addNumber(10);
-                         sp.addNumber(20);
-                         sp.addNumber(30);
-        
-            //for(size_t i = 0; i<sp.getVect().size(); i++)
-            //     {
-            //         cout<<sp.getVect()[i]<<std::endl;
-            //     }
-        sp.longestSpan();
-         sp.shortSpan();
-        //    sp.longestSpan();
+{
+         Span sp(5); 
 
-    }
+    //  int size  =  200;
+    //     Span sp(size)    ;
+    //  for (int i = 1; i <= size; ++i)
+    // {
+    //     sp.addNumber(i);
+    // }
+
+        sp.addNumber(100);
+        sp.addNumber(-200);
+        sp.addNumber(3);
+        sp.addNumber(4);
+        sp.addNumber(5);
+
+    std::cout << "size " << sp.getVect().size() << std::endl;
+    std::cout<<"shortSpan  =  " <<sp.shortestSpan()<<std::endl;
+    std::cout<<" longest span  =  "<<sp.longestSpan()<<std::endl;
 
  
+}

@@ -1,15 +1,17 @@
 #include "BitcoinExchange.hpp"
-#include <fstream>
-#include <iostream>
-#include <string>
 
-int main(int argc , char **argv)
-    { 
-        if(argc == 2)
-                        {
-            Bitcoin Btc(argv[1]);
+
+int main(int argc, char **argv)
+{
+    BitcoinExchange Database;
+    if (argc == 2)
+    {
+        Database.handle_data(argv[1]);
     }
-        else 
-         cout<<"arg are incorrect\n";
+    else
+    {
+        cerr << "Error: Invalid number of arguments.\n";
     }
- 
+
+    return 0;
+}

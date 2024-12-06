@@ -1,7 +1,7 @@
 NAME = megaphone
 SRC = megaphone.cpp
 OBJ =$(SRC:.cpp=.o)
-CPPFLAGS = #-Wall -Wextra -Werror 
+CPPFLAGS = -Wall -Wextra -Werror 
 CC = g++
 CPPFLAGS = -Wall -Wextra   -Werror
 all : $(NAME)
