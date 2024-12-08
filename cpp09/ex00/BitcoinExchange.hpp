@@ -19,6 +19,8 @@ private:
 public:
     BitcoinExchange() ;
     ~BitcoinExchange(); 
+         BitcoinExchange(const BitcoinExchange &origin);
+                 BitcoinExchange &operator=(const BitcoinExchange &origin);
 
     void handle_data(const string &path);
 };

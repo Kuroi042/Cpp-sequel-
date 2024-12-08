@@ -20,7 +20,10 @@ static bool valid_num(string var, bool isFloat = true)
     return (var.find_first_not_of("0123456789") == string::npos);
 }
 
-
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &origin)
+{
+	*this = origin;
+}
 
 static bool ValidDate(string var)
 {
@@ -53,6 +56,17 @@ static bool ValidDate(string var)
 
     return true;
 }
+
+BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &origin)
+{
+	if (this != &origin){
+	    this->input = origin.input;
+       
+    }
+	return (*this); 
+}
+
+
 
     BitcoinExchange::BitcoinExchange()
     {
