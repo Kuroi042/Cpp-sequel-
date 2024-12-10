@@ -3,6 +3,28 @@
 // dup
 // negative
 //
+
+template <typename T>
+void    binaryInsertion(int num, T &data)
+{
+    typename T::iterator    low, mid, high;
+
+    low = data.begin();
+    high = data.end();
+
+    while (low < high)
+    {
+        mid = low + (high - low) / 2; // find the middle of input 
+
+        if (*mid < num) 
+            low = mid + 1;
+        else
+            high = mid;
+    }
+
+    data.insert(low, num);
+}
+
 void PmergeMe::parseArguments(char **argv, int argc)
 {
     string storedArgs;
@@ -84,6 +106,11 @@ void PmergeMe::Jhonson(T &input)
     }
         if (input.size() > 2)
          Jhonson(input);
+
+
+    for (size_t i = 0; i < pending.size(); i++)
+        binaryInsertion<T>(pending.at(i), input);
+
 }
 //   void sortList(string elements) {}
 
@@ -103,4 +130,5 @@ void sortingPairs(T &input)
             input.at(i + 1) = tmp;
         }
     }
+
 }
