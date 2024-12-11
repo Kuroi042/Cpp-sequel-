@@ -8,6 +8,7 @@ int main(int argc , char **argv)
             {
                 pmg.parseArguments(argv,argc );
                 pmg.sortList();
+                pmg.printing();
             }
     else if(argc<=2)
         cout<<"number of arguments is incorrect !! \n";

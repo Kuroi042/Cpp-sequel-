@@ -14,7 +14,7 @@ class PmergeMe
 
 private:
     vector<int> parsedVec;
-    vector<int> BaseList;
+      vector<int> BaseList;
     vector<int> sortedVector;
     deque<int> sorteDeque;
     double vectorTime;
@@ -28,7 +28,7 @@ template <typename T>
  
     PmergeMe() {};
     void sortList();
-
+    void printing();
     void parseArguments(char **argv, int argc);
     // PmergeMe &operator=(const PmergeMe &other);
     // PmergeMe(const PmergeMe &other);
